@@ -2,4 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-// set up global styles and responsiveness for the website
+:root {
+  --header-height: 80px;
+  --primary-color: #1ba0e2;
+  --secondary-color: ;
+  --text-color: #333;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// responsiveness
+.app {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.inner {
+  display: block;
+  width: 96vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+// tablet
+@media screen and (max-width: 768px) {
+  .inner {
+    width: 96vw;
+    padding: 0 16px;
+  }
+}
+
+// mobile
+@media screen and (max-width: 486px) {
+}
