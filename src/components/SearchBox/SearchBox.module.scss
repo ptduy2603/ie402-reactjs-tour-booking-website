@@ -1,0 +1,38 @@
+.wrapper {
+  width: 60%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.search_input {
+  border: none;
+  outline: none;
+  height: 100%;
+  flex: 1;
+  padding: 8px 16px;
+}
+
+.search_btn {
+  background-color: var(--primary-color);
+  font-size: 1.6rem;
+  height: 100%;
+  width: 40%;
+  max-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all ease-in 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

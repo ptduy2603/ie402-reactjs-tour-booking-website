@@ -12,32 +12,27 @@ function App() {
     <>
       <Header />
       <main className="app">
-        <div className="inner">
-          <Routes>
-            {publicRoutes.map((route) => (
-              <Route
-                key={route?.path}
-                path={route?.path}
-                element={<route.component />}
-              />
-            ))}
-            {privateRoutes.map((route) => (
-              <Route
-                key={route?.path}
-                path={route?.path}
-                element={
-                  <ProtectedRoute
-                    isSafe={isAuthenticated}
-                    redirectPath="/login"
-                  >
-                    {<route.component />}
-                  </ProtectedRoute>
-                }
-              />
-            ))}
-            <Route path="*" element={<DefaultPage />} />
-          </Routes>
-        </div>
+        <Routes>
+          {publicRoutes.map((route) => (
+            <Route
+              key={route?.path}
+              path={route?.path}
+              element={<route.component />}
+            />
+          ))}
+          {privateRoutes.map((route) => (
+            <Route
+              key={route?.path}
+              path={route?.path}
+              element={
+                <ProtectedRoute isSafe={isAuthenticated} redirectPath="/login">
+                  {<route.component />}
+                </ProtectedRoute>
+              }
+            />
+          ))}
+          <Route path="*" element={<DefaultPage />} />
+        </Routes>
       </main>
       <Footer />
     </>

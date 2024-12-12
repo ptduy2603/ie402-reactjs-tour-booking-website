@@ -1,0 +1,38 @@
+.button {
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 4px;
+  user-select: none;
+  color: var(--text-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+
+  &.primary {
+    background-color: var(--primary-color);
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &.outline {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    filter: brightness(0.8);
+    cursor: default;
+  }
+}
