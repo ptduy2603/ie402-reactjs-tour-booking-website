@@ -5,7 +5,7 @@ const TourDetailPage = () => {
   return (
     <div className="flex flex-col w-full">
       {/* Main Content */}
-      <main className="flex flex-col md:flex-row p-4 gap-4">
+      <main className="flex flex-col md:flex-row p-4 gap-4 mx-[200px]">
         {/* Tour Detail Section */}
         <section className="md:w-2/3 bg-white shadow-lg p-4 flex flex-col md:flex-row gap-4">
           {/* Tour Details */}
