@@ -1,3 +1,6 @@
+import { FaBus } from "react-icons/fa";
+import { LuCalendar1, LuCalendarClock } from "react-icons/lu";
+
 const TourDetailPage = () => {
   return (
     <div className="flex flex-col w-full">
@@ -12,8 +15,8 @@ const TourDetailPage = () => {
               alt="Tour Image"
               className="w-full h-auto rounded-md mb-4"
             />
-            <h2 className="text-2xl font-semibold mb-2">Chương trình tour</h2>
-            <ul className="list-disc pl-6 mb-4 text-lg">
+            <h2 className="text-3xl font-bold mb-2">Chương trình tour</h2>
+            <ul className="list-disc pl-6 mb-4">
               <li>Ngày 1: Hà Nội - Ninh Bình</li>
               <li>Ngày 2: Ninh Bình - Hạ Long</li>
               <li>Ngày 3: Hạ Long - Cát Bà</li>
@@ -21,15 +24,15 @@ const TourDetailPage = () => {
             </ul>
 
             {/* Map Section */}
-            <div className="w-full bg-gray-100 p-4 rounded-lg shadow-md py-2">
-              <h3 className="text-xl font-bold mb-2">Bản đồ tour</h3>
+            <div className="w-full bg-gray-100 p-4 rounded-lg shadow-md py-4 my-5">
+              <h3 className="text-3xl font-bold mb-2">Bản đồ tour</h3>
               <div className="h-64 bg-blue-200 flex items-center justify-center text-gray-700 font-bold text-lg">
                 Map here
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold mb-2">Chính sách tour</h2>
-            <ul className="list-disc pl-6 text-gray-700 text-lg">
+            <h2 className="text-3xl font-bold mb-2">Chính sách tour</h2>
+            <ul className="list-disc pl-6 text-gray-700">
               <li>
                 Vé trẻ em:
                 <ul className="list-disc pl-6 mt-2">
@@ -82,9 +85,9 @@ const TourDetailPage = () => {
                 </ul>
               </li>
             </ul>
-            <div className="mt-4">
-              <h3 className="text-xl font-semibold">Điều kiện & Quy định</h3>
-              <p className="text-gray-600 text-lg">
+            <div className="my-5 py-5">
+              <h3 className="text-3xl font-bold">Điều kiện & Quy định</h3>
+              <p className="text-gray-600">
                 Các điều kiện hủy tour và quy định khác được áp dụng theo chính
                 sách của công ty.
               </p>
@@ -94,10 +97,10 @@ const TourDetailPage = () => {
 
         {/* Side Section */}
         <aside className="md:w-1/3 bg-gray-100 shadow-lg p-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">
             Du lịch Hà Nội - Ninh Bình - Cát Bà - Hạ Long - Hải Dương
           </h1>
-          <p className="text-gray-500 line-through text-lg">7.500.000đ</p>
+          <p className="text-gray-500 line-through text-2xl">7.500.000đ</p>
           <p className="text-red-600 font-bold text-3xl">
             Giá mới: <span className="text-black">6.400.000đ</span>
           </p>
@@ -106,34 +109,34 @@ const TourDetailPage = () => {
           </div>
           <div className="mt-6 space-y-3">
             <div className="flex items-center">
-              <span className="material-icons text-orange-500 mr-2">
-                directions_car
+              <span className="flex flex-row justify-center material-icons text-5xl text-orange-500 mr-2">
+                <FaBus />
               </span>
-              <p className="text-lg text-gray-700">
+              <p className="text-2xl text-gray-700">
                 Di chuyển: Di chuyển bằng Ô tô
               </p>
             </div>
             <div className="flex items-center">
-              <span className="material-icons text-blue-500 mr-2">
-                calendar_today
+              <span className="material-icons text-5xl text-blue-500 mr-2">
+                <LuCalendar1 />
               </span>
-              <p className="text-lg text-gray-700">
+              <p className="text-2xl text-gray-700">
                 Lịch khởi hành: Thứ 2 hàng tuần
               </p>
             </div>
             <div className="flex items-center">
-              <span className="material-icons text-green-500 mr-2">
-                schedule
+              <span className="material-icons text-5xl text-green-500 mr-2">
+                <LuCalendarClock />
               </span>
-              <p className="text-lg text-gray-700">Thời gian: 4 ngày 3 đêm</p>
+              <p className="text-2xl text-gray-700">Thời gian: 4 ngày 3 đêm</p>
             </div>
           </div>
 
-          <div className="mt-8 flex gap-4">
-            <button className="bg-blue-600 text-white text-lg font-medium px-4 py-3 rounded-lg hover:bg-blue-700">
+          <div className="mt-8 flex gap-4 justify-around">
+            <button className="w-full bg-blue-600 text-white text-3xl font-medium  py-5 rounded-lg hover:bg-blue-700">
               Đặt tour
             </button>
-            <button className="bg-gray-200 text-gray-800 text-lg font-medium px-4 py-3 rounded-lg hover:bg-gray-300">
+            <button className="w-full bg-gray-200 text-gray-800 text-3xl font-medium  py-5 rounded-lg hover:bg-gray-300">
               Yêu cầu đặt
             </button>
           </div>
