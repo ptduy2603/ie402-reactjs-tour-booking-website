@@ -21,7 +21,9 @@
   width: 80px;
   border-radius: 4px;
   margin-bottom: 16px;
+  background-color: #fff;
   height: 80px;
+  margin-left: 36px;
 }
 
 .container {
@@ -37,14 +39,11 @@
     font-weight: 400;
     transition: all ease-in 0.1s;
     color: #888;
+    padding: 3px 0;
 
     &:hover {
       color: #fff;
     }
-  }
-
-  & li + li {
-    margin-top: 6px;
   }
 }
 
