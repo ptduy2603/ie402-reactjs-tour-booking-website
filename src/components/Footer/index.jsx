@@ -11,7 +11,7 @@ function Footer() {
               <div>
                 <img
                   className={styles.logo}
-                  src="/images/logo.jpg"
+                  src="/images/logo.png"
                   alt="SGTravel logo"
                 />
                 <ul>

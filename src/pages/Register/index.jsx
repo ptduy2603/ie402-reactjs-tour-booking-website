@@ -1,25 +1,27 @@
 import classNames from "classnames";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/authSlice";
 
-import styles from "./Login.module.scss";
-import { validateEmail } from "../../utils";
+import styles from "../Login/Login.module.scss";
 import InputField from "../../components/InputField";
 import NavigationStatement from "../../components/NavigationStatement";
 import Button from "../../components/Button";
-import AppLoading from "../../components/Apploading";
+import { validateEmail } from "../../utils";
+import AppLoading from "../../components/AppLoading";
 
-function LoginPage() {
-  const [user, setUser] = useState({ email: "", password: "" });
+function RegisterPage() {
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigator = useNavigate();
-  const dispatch = useDispatch();
 
   const handleChangeValue = (event) => {
     if (!event.target.value.startsWith(" ")) {
@@ -39,41 +41,52 @@ function LoginPage() {
     setErrors(newErrors);
   };
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
-    const newErrors = {};
+    const errors = {};
+
+    if (!user.username.trim()) {
+      errors.username = "Please enter your username!";
+    }
 
     if (!user.email.trim()) {
-      newErrors.email = "Please enter your email!";
+      errors.email = "Please enter your email!";
     } else if (!validateEmail(user.email.trim())) {
-      newErrors.email = "Your email is not valid!";
+      errors.email = "Your email is invalid!";
     }
 
-    if (!user.password.trim()) {
-      newErrors.password = "Please enter your password!";
+    if (!user?.password.trim()) {
+      errors.password = "Please enter your password!";
     }
 
-    if (!Object.keys(newErrors).length) {
-      // fake login logic without api
-      try {
-        setIsLoading(true);
-        toast.success("Login successfully!");
-      } catch (error) {
-        toast.error(error?.response?.data?.message || "Login error");
-      } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-          dispatch(
-            login({
-              user,
-              token: "test login token",
-            })
-          );
-          navigator("/", { replace: true });
-        }, 2000);
-      }
-    } else {
-      setErrors(newErrors);
+    if (!user.confirmPassword.trim()) {
+      errors.confirmPassword = "Please confirm your password!";
+    } else if (user.confirmPassword.trim() !== user.password.trim()) {
+      errors.confirmPassword = "Confirmation password is incorrect!";
+    }
+
+    if (Object.keys(errors).length) {
+      setErrors(errors);
+      return;
+    }
+
+    try {
+      // fake register logic
+      const newUser = {
+        username: user?.username,
+        email: user?.email,
+        password: user?.password,
+      };
+
+      setIsLoading(true);
+      console.log(newUser);
+      toast.success("Register new user successfully!");
+      setTimeout(() => {
+        setIsLoading(false);
+        navigator("/login", { replace: true });
+      }, 2000);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Register error");
     }
   };
 
@@ -87,12 +100,30 @@ function LoginPage() {
               "col col-lg-4 col-md-4 col-sm-0"
             )}
           >
-            <img src="/images/logo.png" loading="lazy" alt="SGTravel logo" />
+            <img
+              src="/images/logo.png"
+              loading="lazy"
+              alt="Chat app logo of register form"
+            />
           </div>
           <div className="col col-lg-8 col-md-8 col-sm-12">
             <div className={styles["form-content"]}>
-              <h2 className={styles.title}>Login</h2>
-              <form action="#" method="POST">
+              <h2 className={styles.title}>Register new account</h2>
+              <form action="">
+                <div className={styles["form-group"]}>
+                  <InputField
+                    id="username"
+                    name="username"
+                    label="Username*"
+                    icon={<FontAwesomeIcon icon={faUser} />}
+                    value={user?.username}
+                    placeholder="Enter your username..."
+                    onChange={handleChangeValue}
+                    onFocus={handleInputFocus}
+                    errorMessage={errors?.username || ""}
+                  />
+                </div>
+
                 <div className={styles["form-group"]}>
                   <InputField
                     id="email"
@@ -123,43 +154,34 @@ function LoginPage() {
                 </div>
 
                 <div className={styles["form-group"]}>
-                  <div className={styles["forgot-password"]}>
-                    <Link to={"/forgot-password"}>Forgot password</Link>
-                  </div>
-                </div>
-
-                <div className={styles["form-group"]}>
-                  <div className={styles["horizontal-line"]}>
-                    <span></span>
-                    <span>or</span>
-                    <span></span>
-                  </div>
-                  <div className={styles["login-options"]}>
-                    <div className={classNames("btn")}>
-                      <img alt="Google logo" src="/images/google.png" />
-                      <span>Google</span>
-                    </div>
-
-                    <div className={classNames("btn")}>
-                      <img alt="Facebook logo" src="/images/facebook.png" />
-                      <span>Facebook</span>
-                    </div>
-                  </div>
+                  <InputField
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    label="Confirm password*"
+                    icon={<FontAwesomeIcon icon={faLock} />}
+                    value={user?.confirmPassword}
+                    placeholder="Confirm your password..."
+                    onChange={handleChangeValue}
+                    onFocus={handleInputFocus}
+                    isSecure
+                    errorMessage={errors?.confirmPassword || ""}
+                  />
                 </div>
 
                 <div className={styles["form-group"]}>
                   <NavigationStatement
-                    question="Don't have an account?"
-                    statement="Sign up"
-                    link="/register"
+                    question="Already have an account?"
+                    statement="Login"
+                    link="/login"
                   />
                 </div>
                 <div className={styles["form-group"]}>
                   <Button
-                    content="Login"
+                    extraStyles={{ margin: "0 auto" }}
                     variant="primary"
+                    content="Register"
                     classNames={styles["login-btn"]}
-                    onClick={handleLogin}
+                    onClick={handleRegister}
                   />
                 </div>
               </form>
@@ -173,11 +195,10 @@ function LoginPage() {
           pauseOnHover
           theme="light"
         />
-
         {isLoading && <AppLoading />}
       </div>
     </>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
