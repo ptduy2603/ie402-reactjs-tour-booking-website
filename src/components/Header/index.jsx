@@ -9,15 +9,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import classnames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./Header.module.scss";
 import { navigationTabs } from "../../data";
 import SearchBox from "../SearchBox";
 import Button from "../Button";
+import { logout } from "../../redux/authSlice";
 
 function Header() {
-  const isAuthenticated = true; // replace with auth state from redux
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  const dispatch = useDispatch();
 
   const handleRenderNavigation = () => {
     return navigationTabs.map((tab) => (
@@ -40,15 +43,21 @@ function Header() {
     ));
   };
 
+  const handleLogout = () => {
+    // clear local storage
+    setIsOpenDrawer(false);
+    dispatch(logout());
+  };
+
   return (
-    <header className={styles.header}>
+    <header className={styles.header} id="header">
       <div className={styles["header_top"]}>
         <div className="inner h-full">
           <div className="h-full flex items-center justify-between">
             <div className={styles.logo}>
               <Link to="/">
                 <img
-                  src="/images/logo.jpg"
+                  src="/images/logo.png"
                   alt="SGTravel logo"
                   loading="lazy"
                 />
@@ -190,6 +199,7 @@ function Header() {
                     content="Đăng xuất"
                     variant="primary"
                     icon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                    onClick={handleLogout}
                   />
                 </div>
               </>

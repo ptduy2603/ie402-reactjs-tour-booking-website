@@ -4,9 +4,11 @@ import { publicRoutes, privateRoutes } from "./routes";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DefaultPage from "./pages/Default";
+import { useSelector } from "react-redux";
 
 function App() {
-  const isAuthenticated = false; // replace with auth state from redux
+  const isAuthenticated =
+    useSelector((state) => state?.auth?.isAuthenticated) || false;
 
   return (
     <>
