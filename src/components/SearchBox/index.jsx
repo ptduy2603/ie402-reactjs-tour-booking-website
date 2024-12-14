@@ -90,7 +90,7 @@ function SearchBox() {
                   <div className="w-full h-full">
                     <input
                       type="text"
-                      placeholder="Search for atta dal and more."
+                      placeholder="Search for tours"
                       autoFocus
                       value={inputValue}
                       className="bg-transparent w-full h-full outline-none"
@@ -120,17 +120,17 @@ function SearchBox() {
                 >
                   <TypeAnimation
                     sequence={[
-                      "Nhập tên địa chỉ mà bạn muốn tới",
+                      "Nhập tour mà bạn muốn đi",
                       1000,
-                      "Huế - Đà Nẵng - Hội An",
+                      "Dinh Độc Lập",
                       1000,
-                      "Đà Lạt",
+                      "Phố đi bộ Nguyễn Huệ",
                       1000,
-                      "Nha Trang",
+                      "Nhà Thờ Đức Bà",
                       1000,
-                      "Hội An",
+                      "Thảo Cầm Viên",
                       1000,
-                      "Quy Nhơn",
+                      "Bến Nhà Rồng",
                       1000,
                     ]}
                     wrapper="span"
