@@ -1,105 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import { MdOutlineLocationOn } from "react-icons/md";
-import { TbCalendarCheck } from "react-icons/tb";
-import { FaRegPaperPlane } from "react-icons/fa6";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { tours as tours } from "../../data/data";
 
 const index = () => {
+  const search = useLocation().search;
+  const URLSearch = new URLSearchParams(search);
+  const searchQuery = URLSearch.getAll("q");
   const [filterRating, setFilterRating] = useState("");
   const [filterDistance, setFilterDistance] = useState("");
   const [filterSort, setFilterSort] = useState("");
   const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [startPoint, setStartPoint] = useState("");
+  const [suggestion, setSuggestion] = useState([]);
 
-  const tours = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/300x200",
-      title: "Dinh độc lập - Miếu Bà - Chợ Bình Tây ",
-      priceOriginal: "6.200.000đ",
-      priceDiscounted: "5.900.000đ",
-      distance: 5,
-      rating: 4,
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/300x200",
-      title: "Dinh độc lập - Chợ bến thành - Bảo tàng mỹ thuật",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.000.000đ",
-      distance: 6,
-      rating: 4.5,
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/300x200",
-      title: "Nhà thờ Đức Bà - Nhà hát thành phố HCM - Bảo tàng lịch sử VN",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 6,
-      rating: 3,
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/300x200",
-      title: "Thảo cầm viên - phố đi bộ - Khu phố Tây bùi viện",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 3,
-      rating: 5,
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bảo tàng lịch sử - Đường sách nguyễn văn bình - Dinh độc lập",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 7,
-      rating: 4,
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 7,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 8,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-  ];
+  const [searchedTours, setSearchedTours] = useState([]);
 
-  const [searchedTours, setSearchedTours] = useState(tours);
-  useEffect(() => {}, [searchedTours]);
+  useEffect(() => {
+    const matchingTours = tours?.filter((tour) =>
+      tour.title.toLowerCase().includes(searchQuery.toString().toLowerCase())
+    );
+    if (matchingTours.length > 0) {
+      setSearchedTours(matchingTours);
+    }
+  }, [search]);
+
   const filteredTours = searchedTours.filter((tour) => {
     const isRatingMatch =
       filterRating === "" ? true : tour.rating === parseInt(filterRating);
 
-    const isDistanceMatch =
-      filterDistance === "" ? true : tour.distance === parseInt(filterDistance);
+    // const isDistanceMatch =
+    //   filterDistance === "" ? true : tour.distance === parseInt(filterDistance);
 
-    return isRatingMatch && isDistanceMatch;
+    return isRatingMatch;
   });
 
   const handleDestinationChange = (e) => {
@@ -107,10 +46,16 @@ const index = () => {
     setDestination(value);
 
     if (value === "") {
-      setSearchedTours(tours);
+      setSearchedTours(searchedTours);
       setFilterRating("");
       setFilterDistance("");
       setFilterSort("");
+      setSuggestion([]);
+    } else {
+      const n = searchedTours.filter((tour) =>
+        tour.title.toLowerCase().includes(value.toLowerCase())
+      );
+      setSuggestion(n);
     }
   };
 
@@ -125,6 +70,12 @@ const index = () => {
     );
 
     setSearchedTours(n);
+  };
+
+  const handleSuggestionClick = (title) => {
+    setDestination(title);
+    setSearchedTours(searchedTours.filter((tour) => tour.title === title));
+    setSuggestion([]);
   };
 
   const sortedTours = filteredTours.sort((a, b) => {
@@ -143,38 +94,68 @@ const index = () => {
           parseInt(b.priceDiscounted.replace("đ", "").replace(".", "").trim()) -
           parseInt(a.priceDiscounted.replace("đ", "").replace(".", "").trim())
         );
+      case "distance_asc":
+        return parseInt(a.distance) - parseInt(b.distance);
+      case "distance_desc":
+        return parseInt(b.distance) - parseInt(a.distance);
       default:
         return 0;
     }
   });
 
   return (
-    <div className="max-w-screen-xl mx-auto p-4">
-      <div className="text-base flex items-start gap-2 text-gray-500 mb-4">
-        <Link to={"/"}>Trang chủ</Link> /{" "}
-        <span className="font-semibold text-blue-600">Kết quả tìm kiếm</span>
+    <div className="max-w-screen-xl inner mx-auto p-4">
+      <div className="text-2xl flex items-start gap-2 text-gray-500 mb-4">
+        <Link className="hover:text-red-500 font-semibold" to={"/"}>
+          Trang chủ
+        </Link>{" "}
+        / <span className="font-semibold text-blue-600">Kết quả tìm kiếm</span>
       </div>
 
       <h2 className="text-4xl font-semibold text-center mb-6">
-        CÓ {tours.length} KẾT QUẢ TÌM KIẾM PHÙ HỢP
+        CÓ {searchedTours?.length} KẾT QUẢ TÌM KIẾM PHÙ HỢP
       </h2>
       <div className="flex justify-center items-center bg-white-100">
         <div className="flex items-center gap-4 bg-white p-4 rounded-lg ">
-          <div className="flex items-center relative gap-2 w-fit border-r-2">
-            <label htmlFor="destination" className="absolute left-3">
-              <MdOutlineLocationOn className="text-gray-500" size={30} />
+          <button className="flex border-2 items-center relative w-fit border-r-2">
+            <label htmlFor="destination" className="pl-2">
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className="text-gray-500"
+                size="lg"
+              />
             </label>
-            <input
-              type="text"
-              placeholder="Bạn muốn đi đâu?"
-              id="destination"
-              value={destination}
-              onChange={handleDestinationChange}
-              className="pl-12 pr-3 py-8 border-2 ml-2.5 border-gray-300 rounded-md "
-            />
-          </div>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Bạn muốn đi đâu?"
+                id="destination"
+                value={destination}
+                onChange={handleDestinationChange}
+                className="pr-3 py-8 focus:outline-none ml-2.5 border-gray-300 rounded-md "
+              />
+              {/* {suggestion.length > 0 && (
+                <ul className="bg-white z-50 -left-16 w-96 absolute rounded-md shadow-md">
+                  {suggestion.map((tour) => (
+                    <li
+                      key={tour.id}
+                      onClick={() => handleSuggestionClick(tour.title)}
+                      className="p-2 cursor-pointer hover:bg-gray-100"
+                    >
+                      {tour.title}
+                    </li>
+                  ))}
+                </ul>
+              )} */}
+            </div>
+          </button>
+
           <button className="flex border-2 px-3 py-3 rounded-md border-gray-300 items-center gap-3">
-            <TbCalendarCheck className="text-gray-500" size={30} />
+            <FontAwesomeIcon
+              icon={faCalendarDays}
+              className="text-gray-500"
+              size="lg"
+            />
             <div className="flex flex-col items-start">
               <p className="text-gray-500 font-semibold">Ngày khởi hành</p>
               <DatePicker
@@ -209,6 +190,16 @@ const index = () => {
           >
             Tìm
           </button>
+          <button
+            onClick={() => {
+              // Xóa query parameters và làm mới trang
+              window.history.replaceState(null, "", "/search");
+              window.location.reload();
+            }}
+            className="bg-blue-500 text-xl font-medium text-white px-10 py-4 rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Làm mới
+          </button>
         </div>
       </div>
       <div className="flex gap-5 items-center">
@@ -222,21 +213,6 @@ const index = () => {
             {[5, 4, 3, 2, 1].map((rating) => (
               <option key={rating} value={rating}>
                 {rating} sao
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="mb-4 flex flex-col gap-3">
-          <select
-            value={filterDistance}
-            onChange={(e) => setFilterDistance(e.target.value)}
-            className="border p-2"
-          >
-            <option value="">Chọn quãng đường</option>
-            {[3, 4, 5, 6, 7, 8].map((distance) => (
-              <option key={distance} value={distance}>
-                {distance}km
               </option>
             ))}
           </select>
@@ -280,6 +256,24 @@ const index = () => {
                 onChange={(e) => setFilterSort(e.target.value)}
               />
               Giá giảm dần
+            </label>
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="sort"
+                value="distance_asc"
+                onChange={(e) => setFilterSort(e.target.value)}
+              />
+              Quãng đường tăng dần
+            </label>
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="sort"
+                value="distance_desc"
+                onChange={(e) => setFilterSort(e.target.value)}
+              />
+              Quãng đường giảm dần
             </label>
           </div>
         </div>
