@@ -1,0 +1,90 @@
+.container {
+    width: 100%;
+}
+
+.imageWrapper {
+    width: 100%; 
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 15px;
+    // max-width: 700px;    
+    flex-direction: column;
+    gap: 10px,
+}
+
+.inputFieldWrapper {
+    border-width: 2px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #fff;
+    color: #494b55;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    padding-left: 10px;
+    gap: 20px;
+}
+
+.inputFieldWrapper2 {
+    @extend .inputFieldWrapper;
+    min-width: 240px;
+}
+
+
+
+.textFiled {
+    margin-bottom: 0;
+    border: none;
+    font-size: 17px;
+    color: #494b55;
+    width: 100%;
+    outline-width: 0;
+}
+
+.react-datepicker__input-container > input {
+    width: 50px;
+}
+
+
+.button {
+    // background-color: #ff5722;
+    color: white;
+    height: 60px;
+    flex: 1
+}
+
+
+.title {
+    font-size: 40px;
+    margin-bottom: 15px;
+    height: 38px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.subTitle {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.content {
+    position: absolute;
+    bottom: 100px;
+}
+
+.flexWrapper {
+    display: flex;
+    flex: 7clea
+}
+
+.listTour {
+    background-color: #f3f5f7;
+    width: 100%;
+}
