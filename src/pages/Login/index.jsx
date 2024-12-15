@@ -5,14 +5,14 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/authSlice";
+import { login } from "~/redux/authSlice";
 
 import styles from "./Login.module.scss";
-import { validateEmail } from "../../utils";
-import InputField from "../../components/InputField";
-import NavigationStatement from "../../components/NavigationStatement";
-import Button from "../../components/Button";
-import AppLoading from "../../components/Apploading";
+import { validateEmail } from "~/utils";
+import InputField from "~/components/InputField";
+import NavigationStatement from "~/components/NavigationStatement";
+import Button from "~/components/Button";
+import AppLoading from "~/components/Apploading";
 
 function LoginPage() {
   const [user, setUser] = useState({ email: "", password: "" });

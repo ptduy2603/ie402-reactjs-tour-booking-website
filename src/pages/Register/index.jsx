@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import styles from "../Login/Login.module.scss";
-import InputField from "../../components/InputField";
-import NavigationStatement from "../../components/NavigationStatement";
-import Button from "../../components/Button";
-import { validateEmail } from "../../utils";
-import AppLoading from "../../components/AppLoading";
+import InputField from "~/components/InputField";
+import NavigationStatement from "~/components/NavigationStatement";
+import Button from "~/components/Button";
+import { validateEmail } from "~/utils";
+import AppLoading from "~/components/AppLoading";
 
 function RegisterPage() {
   const [user, setUser] = useState({
