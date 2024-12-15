@@ -7,6 +7,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { tours as tours } from "../../data/data";
+import Button from "~/components/Button";
 
 const index = () => {
   const search = useLocation().search;
@@ -105,36 +106,38 @@ const index = () => {
 
   return (
     <div className="max-w-screen-xl inner mx-auto p-4">
-      <div className="text-2xl flex items-start gap-2 text-gray-500 mb-4">
-        <Link className="hover:text-red-500 font-semibold" to={"/"}>
-          Trang chủ
-        </Link>{" "}
-        / <span className="font-semibold text-blue-600">Kết quả tìm kiếm</span>
-      </div>
+      <div className="mb-20 mt-10">
 
-      <h2 className="text-4xl font-semibold text-center mb-6">
-        CÓ {searchedTours?.length} KẾT QUẢ TÌM KIẾM PHÙ HỢP
-      </h2>
-      <div className="flex justify-center items-center bg-white-100">
-        <div className="flex items-center gap-4 bg-white p-4 rounded-lg ">
-          <button className="flex border-2 items-center relative w-fit border-r-2">
-            <label htmlFor="destination" className="pl-2">
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className="text-gray-500"
-                size="lg"
-              />
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Bạn muốn đi đâu?"
-                id="destination"
-                value={destination}
-                onChange={handleDestinationChange}
-                className="pr-3 py-8 focus:outline-none ml-2.5 border-gray-300 rounded-md "
-              />
-              {/* {suggestion.length > 0 && (
+        <div className="text-2xl flex items-start gap-2 text-gray-500 mb-4">
+          <Link className="hover:text-red-500 font-semibold" to={"/"}>
+            Trang chủ
+          </Link>{" "}
+          / <span className="font-semibold text-blue-600">Kết quả tìm kiếm</span>
+        </div>
+
+        <h2 className="text-4xl font-semibold text-center mb-6">
+          CÓ {searchedTours?.length} KẾT QUẢ TÌM KIẾM PHÙ HỢP
+        </h2>
+        <div className="flex justify-center items-center bg-white-100">
+          <div className="flex items-center gap-4 bg-white p-4 rounded-lg ">
+            <button className="flex border-2 items-center relative w-fit border-r-2">
+              <label htmlFor="destination" className="pl-2">
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="text-gray-500"
+                  size="lg"
+                />
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Bạn muốn đi đâu?"
+                  id="destination"
+                  value={destination}
+                  onChange={handleDestinationChange}
+                  className="pr-3 py-8 focus:outline-none ml-2.5 border-gray-300 rounded-md "
+                />
+                {/* {suggestion.length > 0 && (
                 <ul className="bg-white z-50 -left-16 w-96 absolute rounded-md shadow-md">
                   {suggestion.map((tour) => (
                     <li
@@ -147,28 +150,28 @@ const index = () => {
                   ))}
                 </ul>
               )} */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button className="flex border-2 px-3 py-3 rounded-md border-gray-300 items-center gap-3">
-            <FontAwesomeIcon
-              icon={faCalendarDays}
-              className="text-gray-500"
-              size="lg"
-            />
-            <div className="flex flex-col items-start">
-              <p className="text-gray-500 font-semibold">Ngày khởi hành</p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                placeholderText="Chọn ngày khởi hành"
-                className="w-fit border-none border-gray-300 rounded-md focus:outline-none"
-                dateFormat="dd/MM/yyyy"
-                popperPlacement="top-start"
+            <button className="flex border-2 px-3 py-3 rounded-md border-gray-300 items-center gap-3">
+              <FontAwesomeIcon
+                icon={faCalendarDays}
+                className="text-gray-500"
+                size="lg"
               />
-            </div>
-          </button>
-          {/* <button className="border-2 border-gray-300 rounded-md flex gap-2 items-center">
+              <div className="flex flex-col items-start">
+                <p className="text-gray-500 font-semibold">Ngày khởi hành</p>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  placeholderText="Chọn ngày khởi hành"
+                  className="w-fit border-none border-gray-300 rounded-md focus:outline-none"
+                  dateFormat="dd/MM/yyyy"
+                  popperPlacement="top-start"
+                />
+              </div>
+            </button>
+            {/* <button className="border-2 border-gray-300 rounded-md flex gap-2 items-center">
             <FaRegPaperPlane className="text-gray-500 ml-4" size={20} />
             <div className="flex flex-col gap-2 p-2 items-start">
               <p className="text-gray-500 font-semibold">Khởi hành từ :</p>
@@ -184,115 +187,117 @@ const index = () => {
               </select>
             </div>
           </button> */}
-          <button
-            onClick={handleSearch}
-            className="bg-orange-500 text-3xl font-medium text-white  px-20 py-8 rounded-md hover:bg-orange-600 transition duration-300"
-          >
-            Tìm
-          </button>
-          <button
-            onClick={() => {
-              // Xóa query parameters và làm mới trang
-              window.history.replaceState(null, "", "/search");
-              window.location.reload();
-            }}
-            className="bg-blue-500 text-xl font-medium text-white px-10 py-4 rounded-md hover:bg-blue-600 transition duration-300"
-          >
-            Làm mới
-          </button>
+            <Button
+              content="Tìm"
+              variant="primary"
+              classNames="bg-orange-500 text-3xl font-medium text-white  px-20 py-8 rounded-md hover:bg-orange-600 transition duration-300"
+              onClick={handleSearch}
+            />
+            <Button
+              content="Làm mới"
+              variant="primary"
+              classNames="bg-blue-500 text-xl font-medium text-white px-10 py-4 rounded-md hover:bg-blue-600 transition duration-300"
+              onClick={() => {
+                // Xóa query parameters và làm mới trang
+                window.history.replaceState(null, "", "/search");
+                window.location.reload();
+              }}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex gap-5 items-center">
-        <div className="mb-4 flex flex-col gap-3">
-          <select
-            value={filterRating}
-            onChange={(e) => setFilterRating(e.target.value)}
-            className="border p-2"
-          >
-            <option value="">Đánh giá</option>
-            {[5, 4, 3, 2, 1].map((rating) => (
-              <option key={rating} value={rating}>
-                {rating} sao
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="flex gap-5 items-center">
+          <div className="mb-4 flex flex-col gap-3">
+            <select
+              value={filterRating}
+              onChange={(e) => setFilterRating(e.target.value)}
+              className="border p-2"
+            >
+              <option value="">Đánh giá</option>
+              {[5, 4, 3, 2, 1].map((rating) => (
+                <option key={rating} value={rating}>
+                  {rating} sao
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="mb-4 flex items-center gap-3">
-          <h3 className="font-semibold">Sắp xếp theo</h3>
-          <div className="flex items-center gap-4">
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="name_asc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Tên A-Z
-            </label>
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="name_desc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Tên Z-A
-            </label>
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="price_asc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Giá tăng dần
-            </label>
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="price_desc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Giá giảm dần
-            </label>
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="distance_asc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Quãng đường tăng dần
-            </label>
-            <label className="flex items-center gap-1">
-              <input
-                type="radio"
-                name="sort"
-                value="distance_desc"
-                onChange={(e) => setFilterSort(e.target.value)}
-              />
-              Quãng đường giảm dần
-            </label>
+          <div className="mb-4 flex items-center gap-3">
+            <h3 className="font-semibold">Sắp xếp theo</h3>
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="name_asc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Tên A-Z
+              </label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="name_desc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Tên Z-A
+              </label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="price_asc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Giá tăng dần
+              </label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="price_desc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Giá giảm dần
+              </label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="distance_asc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Quãng đường tăng dần
+              </label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="sort"
+                  value="distance_desc"
+                  onChange={(e) => setFilterSort(e.target.value)}
+                />
+                Quãng đường giảm dần
+              </label>
+            </div>
           </div>
         </div>
+        {
+          sortedTours.length > 0 ? (
+            // <Card tours={sortedTours} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {
+                sortedTours.map((tour) => (
+                  <TourCard key={tour.id} tour={tour} />
+                ))
+              }
+            </div>
+          ) : (
+            <div>Không có tour nào</div>
+          )
+        }
       </div>
-      {
-        sortedTours.length > 0 ? (
-          // <Card tours={sortedTours} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {
-              sortedTours.map((tour) => (
-                <TourCard key={tour.id} tour={tour} />
-              ))
-            }
-          </div>
-        ) : (
-          <div>Không có tour nào</div>
-        )
-      }
     </div>
+
   );
 };
 
