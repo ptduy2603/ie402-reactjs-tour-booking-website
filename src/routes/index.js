@@ -3,6 +3,7 @@ import LoginPage from "../pages/Login";
 import PaymentPage from "../pages/Payment";
 import RegisterPage from "../pages/Register";
 import TourDetailPage from "../pages/TourDetail";
+import SearchPage from "../pages/Search";
 
 export const publicRoutes = [
   {
@@ -20,6 +21,10 @@ export const publicRoutes = [
   {
     path: "tour/detail/:slug",
     component: TourDetailPage,
+  },
+  {
+    path: "/search",
+    component: SearchPage,
   },
 ];
 
