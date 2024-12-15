@@ -5,11 +5,12 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 import Button from "~/components/Button";
+import ImageSlider from "~/components/ImageSlider";
 import { mockTour } from "~/data";
 import styles from "./TourDetail.module.scss";
 
 const TourDetailPage = () => {
-  const { locations, roads, centerPoint, zoomVal } = mockTour; // fetch from API
+  const { locations, roads, centerPoint, zoomVal, images } = mockTour; // fetch from API
 
   return (
     <div className={styles.wrapper}>
@@ -22,14 +23,10 @@ const TourDetailPage = () => {
         </div>
 
         <section className={classNames("row", styles["tour_content"])}>
-          <div className="col col-lg-8 col-md-9 col-sm-12">
+          <div className="col col-lg-8 col-md-9 col-sm-12 col-sm-order-2">
             <div className="bg-white shadow-lg p-4 flex flex-col gap-4 rounded">
               <div className="w-full">
-                <img
-                  src="https://via.placeholder.com/800x400"
-                  alt="Tour Image"
-                  className="w-full h-auto rounded-md mb-4"
-                />
+                <ImageSlider images={images} />
                 <div className="my-1 py-2">
                   <h2 className={styles.title}>Chương trình tour</h2>
                   <ul className="pl-6 mb-4">
@@ -41,7 +38,7 @@ const TourDetailPage = () => {
                 {/* Map Section */}
                 <div className={styles.map}>
                   <h2 className={styles.title}>Bản đồ tour</h2>
-                  <div className="w-full bg-gray-100 rounded-lg shadow-md my-5">
+                  <div className={styles["map-wrapper"]}>
                     <MapComponent
                       roads={roads}
                       locations={locations}
@@ -115,7 +112,7 @@ const TourDetailPage = () => {
             </div>
           </div>
 
-          <div className="col col-lg-4 col-md-3 col-sm-12">
+          <div className="col col-lg-4 col-md-3 col-sm-12 col-sm-order-1">
             <aside className={styles.sidebar}>
               <h1 className="text-4xl font-bold mb-4">
                 Tour Dinh Độc Lập - Chợ Bến Thành - Bảo Tàng Mỹ Thuật
@@ -149,7 +146,7 @@ const TourDetailPage = () => {
                     <LuCalendarClock />
                   </span>
                   <p className="text-2xl text-gray-700">
-                    Thời gian: 4 ngày 3 đêm
+                    Thời gian: 7h30 - 8h30
                   </p>
                 </div>
               </div>
@@ -171,28 +168,26 @@ const TourDetailPage = () => {
         </section>
 
         {/* Similar Tours Section (Thay bằng Component)*/}
-        <section className="bg-gray-100 py-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className={styles.title}>Các tour tương tự</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Tour Card */}
-              {[...Array(6)].map((_, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg p-4">
-                  <img
-                    src={`https://via.placeholder.com/400x200?text=Tour+$
+        <section className={styles["related-product-section"]}>
+          <h2 className={styles["section_heading"]}>Các tour tương tự</h2>
+          <div className="row mt-4">
+            {/* Tour Card */}
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="col col-lg-4 col-md-6 col-sm-12">
+                <img
+                  src={`https://via.placeholder.com/400x200?text=Tour+$
                       {index + 1}
                     `}
-                    alt={`Tour ${index + 1}`}
-                    className="w-full h-auto rounded mb-2"
-                  />
-                  <h3 className="text-lg font-bold">Tour Campuchia 4N3Đ</h3>
-                  <p className="text-red-500 font-bold text-lg">3.979.000đ</p>
-                  <button className="bg-blue-500 text-white text-base py-1 px-2 rounded hover:bg-blue-600 mt-2">
-                    Đặt Tour
-                  </button>
-                </div>
-              ))}
-            </div>
+                  alt={`Tour ${index + 1}`}
+                  className="w-full h-auto rounded mb-2"
+                />
+                <h3 className="text-lg font-bold">Tour Campuchia 4N3Đ</h3>
+                <p className="text-red-500 font-bold text-lg">3.979.000đ</p>
+                <button className="bg-blue-500 text-white text-base py-1 px-2 rounded hover:bg-blue-600 mt-2">
+                  Đặt Tour
+                </button>
+              </div>
+            ))}
           </div>
         </section>
       </div>

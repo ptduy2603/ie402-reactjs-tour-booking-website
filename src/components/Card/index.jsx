@@ -1,4 +1,3 @@
-import React from "react";
 import { FaCarSide, FaRoad, FaStar } from "react-icons/fa";
 
 const index = ({ tours }) => {

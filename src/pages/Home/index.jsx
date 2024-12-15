@@ -1,18 +1,10 @@
-import styles from "./Home.module.scss";
-
 import { useState } from "react";
-import locationIcon from "/images/location_icon.svg";
-import calendarIcon from "/images/calender_icon.svg";
-import planeIcon from "/images/plane_icon.svg";
-import Button from "../../components/Button";
-
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 import classNames from "classnames";
-import Card from "../../components/Card";
 
-import React from "react";
+import styles from "./Home.module.scss";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 function HomePage() {
   const [startDate, setStartDate] = useState(new Date());
@@ -129,7 +121,7 @@ function HomePage() {
       distance: 8,
       rating: 5,
     },
-  ]
+  ];
 
   return (
     <>
@@ -150,7 +142,7 @@ function HomePage() {
 
                 <div className={styles.wrapper}>
                   <div className={styles.inputFieldWrapper}>
-                    <img src={locationIcon} className="w-9 h-9" />
+                    <img src="/images/location_icon.svg" className="w-9 h-9" />
                     <input
                       type="text"
                       placeholder="Bạn muốn đi đâu?"
@@ -165,7 +157,10 @@ function HomePage() {
                     )}
                   >
                     <div className={styles.inputFieldWrapper2}>
-                      <img src={calendarIcon} className="w-9 h-9" />
+                      <img
+                        src="/images/calender_icon.svg"
+                        className="w-9 h-9"
+                      />
                       <div className="flex flex-col">
                         <p>Ngày khởi hành</p>
                         <DatePicker
@@ -178,7 +173,7 @@ function HomePage() {
                     </div>
 
                     <div className={styles.inputFieldWrapper2}>
-                      <img src={planeIcon} className="w-9 h-9" />
+                      <img src="/images/plane_icon.svg" className="w-9 h-9" />
                       <div className="w-full pr-4">
                         <p>Khởi hành từ</p>
                         <select className="focus:outline-none border-0 w-full">
@@ -285,7 +280,8 @@ function HomePage() {
                     TOUR QUẬN 1
                   </h2>
                   <p className="text-[#888] mt-2">
-                    Cùng SGTravel điểm qua một vài địa điểm du lịch tại quận 1 nhé
+                    Cùng SGTravel điểm qua một vài địa điểm du lịch tại quận 1
+                    nhé
                   </p>
                 </center>
 
@@ -295,17 +291,16 @@ function HomePage() {
               <div className="">
                 <center className="mb-10">
                   <h2 className="text-4xl font-semibold cursor-pointer hover:text-[--primary-color]">
-                  ĐIỂM ĐẾN YÊU THÍCH
+                    ĐIỂM ĐẾN YÊU THÍCH
                   </h2>
                   <p className="text-[#888] mt-2">
                     Các điểm đến yêu thích của khách hàng tại SGTravel
                   </p>
                 </center>
-                
+
                 <div className="">
-                    <img src="/images/favorite-1.png" alt="" />
+                  <img src="/images/favorite-1.png" alt="" />
                 </div>
-                
               </div>
             </div>
           </div>

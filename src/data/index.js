@@ -130,4 +130,19 @@ export const mockTour = {
     latitude: 10.773993971659255,
   },
   zoomVal: 16,
+  images: [
+    {
+      id: 1,
+      url: "https://i2.ex-cdn.com/crystalbay.com/files/content/2024/08/16/dinh-doc-lap-1-1545.jpg",
+      // caption or not
+    },
+    {
+      id: 1,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPKCqEEqh2oojP5FVbNZAOfC-RXeQCEWJ8bw&s",
+    },
+    {
+      id: 1,
+      url: "https://cdn3.ivivu.com/2022/10/Bao-tang-My-thuat-TP-HCM-ivivu.jpg",
+    },
+  ],
 };

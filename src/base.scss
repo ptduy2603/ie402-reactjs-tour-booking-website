@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "react-slideshow-image/dist/styles.css";
 
 :root {
   --header-height: 80px;
@@ -105,6 +106,11 @@ body {
     max-width: 33.3333%;
   }
 
+  .col-md-6 {
+    flex: 0 50%;
+    max-width: 50%;
+  }
+
   .col-md-12 {
     flex: 0 100%;
     max-width: 100%;
@@ -113,6 +119,14 @@ body {
   .col-md-8 {
     flex: 0 66.6667%;
     max-width: 66.6667%;
+  }
+
+  .col-md-order-1 {
+    order: 1;
+  }
+
+  .col-md-order-2 {
+    order: 2;
   }
 }
 
@@ -139,6 +153,14 @@ body {
 
   .col-sm-0 {
     display: none;
+  }
+
+  .col-sm-order-1 {
+    order: 1;
+  }
+
+  .col-sm-order-2 {
+    order: 2;
   }
 }
 
