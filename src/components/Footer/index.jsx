@@ -5,7 +5,7 @@ function Footer() {
   return (
     <>
       <footer className={styles.footer}>
-        <div className="inner">
+        <div className="inner py-5">
           <div className={styles.container}>
             <div className={styles.section}>
               <div>
