@@ -4,7 +4,9 @@ import MapComponent from "~/components/MapComponent";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
+import { tourList } from "~/data";
 import Button from "~/components/Button";
+import Card from "~/components/Card";
 import ImageSlider from "~/components/ImageSlider";
 import { mockTour } from "~/data";
 import styles from "./TourDetail.module.scss";
@@ -171,21 +173,9 @@ const TourDetailPage = () => {
         <section className={styles["related-product-section"]}>
           <h2 className={styles["section_heading"]}>Các tour tương tự</h2>
           <div className="row mt-4">
-            {/* Tour Card */}
-            {[...Array(6)].map((_, index) => (
-              <div key={index} className="col col-lg-4 col-md-6 col-sm-12">
-                <img
-                  src={`https://via.placeholder.com/400x200?text=Tour+$
-                      {index + 1}
-                    `}
-                  alt={`Tour ${index + 1}`}
-                  className="w-full h-auto rounded mb-2"
-                />
-                <h3 className="text-lg font-bold">Tour Campuchia 4N3Đ</h3>
-                <p className="text-red-500 font-bold text-lg">3.979.000đ</p>
-                <button className="bg-blue-500 text-white text-base py-1 px-2 rounded hover:bg-blue-600 mt-2">
-                  Đặt Tour
-                </button>
+            {tourList.map((tour) => (
+              <div className="col col-lg-4 col-md-6 col-sm-12" key={tour?.id}>
+                <Card tour={tour} />
               </div>
             ))}
           </div>

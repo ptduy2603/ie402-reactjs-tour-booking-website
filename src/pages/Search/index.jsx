@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import TourCard from "~/components/Card"
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import TourCard from "~/components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { tours as tours } from "../../data/data";
+import { tourList } from "~/data";
 import Button from "~/components/Button";
 
-const index = () => {
+const SearchPage = () => {
   const search = useLocation().search;
   const URLSearch = new URLSearchParams(search);
   const searchQuery = URLSearch.getAll("q");
@@ -18,19 +17,20 @@ const index = () => {
   const [filterSort, setFilterSort] = useState("");
   const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState(null);
-  const [startPoint, setStartPoint] = useState("");
+  // const [startPoint, setStartPoint] = useState("");
   const [suggestion, setSuggestion] = useState([]);
 
   const [searchedTours, setSearchedTours] = useState([]);
 
-  useEffect(() => {
-    const matchingTours = tours?.filter((tour) =>
-      tour.title.toLowerCase().includes(searchQuery.toString().toLowerCase())
-    );
-    if (matchingTours.length > 0) {
-      setSearchedTours(matchingTours);
-    }
-  }, [search]);
+  // There was a problem with this useEffect that makes the site re-render infinitely
+  // useEffect(() => {
+  //   const matchingTours = tourList?.filter((tour) =>
+  //     tour.title.toLowerCase().includes(searchQuery.toString().toLowerCase())
+  //   );
+  //   if (matchingTours.length > 0) {
+  //     setSearchedTours(matchingTours);
+  //   }
+  // }, [search, searchQuery]);
 
   const filteredTours = searchedTours.filter((tour) => {
     const isRatingMatch =
@@ -73,11 +73,11 @@ const index = () => {
     setSearchedTours(n);
   };
 
-  const handleSuggestionClick = (title) => {
-    setDestination(title);
-    setSearchedTours(searchedTours.filter((tour) => tour.title === title));
-    setSuggestion([]);
-  };
+  // const handleSuggestionClick = (title) => {
+  //   setDestination(title);
+  //   setSearchedTours(searchedTours.filter((tour) => tour.title === title));
+  //   setSuggestion([]);
+  // };
 
   const sortedTours = filteredTours.sort((a, b) => {
     switch (filterSort) {
@@ -107,14 +107,6 @@ const index = () => {
   return (
     <div className="max-w-screen-xl inner mx-auto p-4">
       <div className="mb-20 mt-10">
-
-        <div className="text-2xl flex items-start gap-2 text-gray-500 mb-4">
-          <Link className="hover:text-red-500 font-semibold" to={"/"}>
-            Trang chủ
-          </Link>{" "}
-          / <span className="font-semibold text-blue-600">Kết quả tìm kiếm</span>
-        </div>
-
         <h2 className="text-4xl font-semibold text-center mb-6">
           CÓ {searchedTours?.length} KẾT QUẢ TÌM KIẾM PHÙ HỢP
         </h2>
@@ -193,7 +185,7 @@ const index = () => {
               classNames="bg-orange-500 text-3xl font-medium text-white  px-20 py-8 rounded-md hover:bg-orange-600 transition duration-300"
               onClick={handleSearch}
             />
-            <Button
+            {/* <Button
               content="Làm mới"
               variant="primary"
               classNames="bg-blue-500 text-xl font-medium text-white px-10 py-4 rounded-md hover:bg-blue-600 transition duration-300"
@@ -202,7 +194,7 @@ const index = () => {
                 window.history.replaceState(null, "", "/search");
                 window.location.reload();
               }}
-            />
+            /> */}
           </div>
         </div>
         <div className="flex gap-5 items-center">
@@ -281,24 +273,18 @@ const index = () => {
             </div>
           </div>
         </div>
-        {
-          sortedTours.length > 0 ? (
-            // <Card tours={sortedTours} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {
-                sortedTours.map((tour) => (
-                  <TourCard key={tour.id} tour={tour} />
-                ))
-              }
-            </div>
-          ) : (
-            <div>Không có tour nào</div>
-          )
-        }
+        {tourList.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {tourList.map((tour) => (
+              <TourCard key={tour?.id} tour={tour} />
+            ))}
+          </div>
+        ) : (
+          <div>Không có tour nào</div>
+        )}
       </div>
     </div>
-
   );
 };
 
-export default index;
+export default SearchPage;

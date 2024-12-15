@@ -1,21 +1,17 @@
 import styles from "./SearchBox.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
-import { tours as tours } from "../../data/data";
+import { tourList } from "~/data";
+
 function SearchBox() {
-  const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [isSearchPage, setIsSearchPage] = useState(
-    location.pathname === "/search"
-  );
   const [inputValue, setInputValue] = useState("");
   const [isInputActive, setIsInputActive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
   const dropdownRef = useRef();
 
   useEffect(() => {
@@ -40,7 +36,7 @@ function SearchBox() {
       setIsInputActive(false);
       setIsVisible(e.target.value && suggestions?.length > 0);
     } else {
-      const n = tours.filter((tour) =>
+      const n = tourList.filter((tour) =>
         tour.title.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setIsVisible(true);
@@ -69,7 +65,7 @@ function SearchBox() {
   const handleSearchSelect = (suggestion) => {
     setSuggestions([]);
     //khi click vao day la den trang detail cua san pham
-    navigate(`/product/${suggestion?._id}`);
+    navigate(`/tour/detail/${suggestion?._id}`);
   };
 
   const handleFocus = () => {
@@ -77,7 +73,6 @@ function SearchBox() {
       setIsVisible(true);
     }
   };
-  // apply debounce for real-time searching
 
   return (
     <>
@@ -143,7 +138,10 @@ function SearchBox() {
           </div>
         </div>
 
-        <button className={styles["search_btn"]}>
+        <button
+          className={styles["search_btn"]}
+          onClick={() => navigate("/search")}
+        >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </div>

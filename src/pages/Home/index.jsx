@@ -5,123 +5,10 @@ import classNames from "classnames";
 import styles from "./Home.module.scss";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import { tourList } from "~/data";
 
 function HomePage() {
   const [startDate, setStartDate] = useState(new Date());
-
-  const tourData = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/300x200",
-      title: "Dinh độc lập - Miếu Bà - Chợ Bình Tây ",
-      priceOriginal: "6.200.000đ",
-      priceDiscounted: "5.900.000đ",
-      distance: 5,
-      rating: 4,
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/300x200",
-      title: "Dinh độc lập - Chợ bến thành - Bảo tàng mỹ thuật",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.000.000đ",
-      distance: 6,
-      rating: 4.5,
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/300x200",
-      title: "Nhà thờ Đức Bà - Nhà hát thành phố HCM - Bảo tàng lịch sử VN",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 6,
-      rating: 3,
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/300x200",
-      title: "Thảo cầm viên - phố đi bộ - Khu phố Tây bùi viện",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 3,
-      rating: 5,
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bảo tàng lịch sử - Đường sách nguyễn văn bình - Dinh độc lập",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 7,
-      rating: 4,
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 7,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 8,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-  ];
-
-  const tourDataQ1 = [
-    {
-      id: 5,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bảo tàng lịch sử - Đường sách nguyễn văn bình - Dinh độc lập",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 7,
-      rating: 4,
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 7,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-    {
-      id: 8,
-      image: "https://via.placeholder.com/300x200",
-      title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
-      priceOriginal: "6.500.000đ",
-      priceDiscounted: "6.300.000đ",
-      distance: 8,
-      rating: 5,
-    },
-  ];
 
   return (
     <>
@@ -137,7 +24,7 @@ function HomePage() {
               <div className={styles.content}>
                 <h2 className={styles.title}>Đặt Tour du lịch!</h2>
                 <p className={styles.subTitle}>
-                  Hơn 300 tours du lịch ở Việt Nam và Quốc Tế
+                  Hơn 50 tours du lịch ở Thành phố Hồ Chí Minh
                 </p>
 
                 <div className={styles.wrapper}>
@@ -258,7 +145,16 @@ function HomePage() {
                   </p>
                 </center>
 
-                {<Card tours={tourData} />}
+                <div className="row">
+                  {tourList.map((tour) => (
+                    <div
+                      className="col col-lg-4 col-md-6 col-sm-12"
+                      key={tour?.id}
+                    >
+                      <Card tour={tour} />
+                    </div>
+                  ))}
+                </div>
 
                 <div className="mt-10 flex justify-between gap-4">
                   <img
@@ -285,10 +181,19 @@ function HomePage() {
                   </p>
                 </center>
 
-                {<Card tours={tourDataQ1} />}
+                <div className="row">
+                  {tourList.map((tour) => (
+                    <div
+                      className="col col-lg-4 col-md-6 col-sm-12"
+                      key={tour?.id}
+                    >
+                      <Card tour={tour} />
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="">
+              <div>
                 <center className="mb-10">
                   <h2 className="text-4xl font-semibold cursor-pointer hover:text-[--primary-color]">
                     ĐIỂM ĐẾN YÊU THÍCH
@@ -298,7 +203,7 @@ function HomePage() {
                   </p>
                 </center>
 
-                <div className="">
+                <div>
                   <img src="/images/favorite-1.png" alt="" />
                 </div>
               </div>
