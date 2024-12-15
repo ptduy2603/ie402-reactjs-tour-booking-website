@@ -29,3 +29,6 @@ dist-ssr
 .env.development
 .env.production
 .env.test
+
+# dependencies
+package-lock.json

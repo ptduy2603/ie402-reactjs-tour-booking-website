@@ -12,10 +12,10 @@ import classnames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./Header.module.scss";
-import { navigationTabs } from "../../data";
+import { navigationTabs } from "~/data";
 import SearchBox from "../SearchBox";
 import Button from "../Button";
-import { logout } from "../../redux/authSlice";
+import { logout } from "~/redux/authSlice";
 
 function Header() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);

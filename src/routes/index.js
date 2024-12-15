@@ -19,7 +19,7 @@ export const publicRoutes = [
     component: RegisterPage,
   },
   {
-    path: "/detail",
+    path: "tour/detail/:slug",
     component: TourDetailPage,
   },
   {
