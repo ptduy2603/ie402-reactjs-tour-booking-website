@@ -141,7 +141,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className={classNames(styles.listTour)}>
+        <div className={classNames('pb-20', styles.listTour)}>
           <div className="inner pt-10">
             <div className="flex flex-col gap-11">
               <div className="dealTour">

@@ -66,7 +66,7 @@ const TourDetailPage = () => {
               <div className="col col-lg-8 col-md-9 col-sm-12 col-sm-order-2">
                 <div className="bg-white shadow-lg p-4 flex flex-col gap-4 rounded">
                   <div className="w-full">
-                    <ImageSlider images={images} />
+                    <ImageSlider images={tourDetail.images} />
                     <div className="my-1 py-2">
                       <h2 className={styles.title}>Chương trình tour</h2>
                       <ul className="pl-6 mb-4">

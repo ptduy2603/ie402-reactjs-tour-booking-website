@@ -7,7 +7,7 @@ function ImageSlider({ images }) {
     <>
       <Slide className={styles.slider}
         autoplay={true}
-        duration={1000}
+        duration={3000}
       >
         {images.map((image, index) => (
           <div

@@ -6,6 +6,7 @@ import { faRoad } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Button from "~/components/Button";
 import { useNavigate } from "react-router-dom";
+import { convertPrice } from "~/utils";
 
 const TourCard = ({ tour }) => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const TourCard = ({ tour }) => {
             <FontAwesomeIcon icon={faCar} />
           </div>
           <span className="line-through text-gray-400 text-2xl">
-            {tour?.price + 900000}
+            {convertPrice(tour?.price + 900000)}
           </span>
         </div>
         <div className="flex items-center text-gray-600 text-2xl">
@@ -52,7 +53,7 @@ const TourCard = ({ tour }) => {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-red-600 font-semibold text-3xl ml-2">
-              {tour?.price}
+              {convertPrice(tour?.price)}
             </span>
           </div>
           <Button
