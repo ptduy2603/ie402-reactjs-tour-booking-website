@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import classNames from "classnames";
 
 import styles from "./Home.module.scss";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
-import { tourList } from "~/data";
+import { SERVER_URL } from "~/constants";
 
 function HomePage() {
   const [startDate, setStartDate] = useState(new Date());
+  const [tourList, setTourList] = useState([]);
+  useEffect(() => {
+    const fetchTourList = async () => {
+      try {
+        const response = await fetch(`${SERVER_URL}/tours`);
+        const data = await response.json();
+        setTourList(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTourList();
+  }, []);
 
   return (
     <>
