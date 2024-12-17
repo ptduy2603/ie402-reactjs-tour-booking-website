@@ -1,0 +1,92 @@
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 6px;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  align-items: center;
+  padding: 6px 0;
+
+  & a {
+    cursor: pointer;
+    transition: all ease-in 0.1s;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  & span:last-child {
+    color: var(--primary-color);
+  }
+}
+
+// right sidebar
+.sidebar {
+  padding: 16px;
+  color: var(--text-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
+
+.tour_content {
+  margin-top: 8px;
+  color: var(--text-color);
+
+  & .map {
+    margin: 4px 0;
+    padding: 8px 0;
+
+    & .map-wrapper {
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 20px 0;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  & ul {
+    margin-top: 6px;
+  }
+
+  & li,
+  & p {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    padding: 2px 0;
+  }
+}
+
+.title {
+  font-size: 2.2rem;
+  padding: 8px;
+  user-select: none;
+  border-left: 3px solid var(--primary-color);
+  background-color: #ddf1fb;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.section_heading {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  padding: 16px 0;
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.related-product-section {
+  margin-top: 16px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
