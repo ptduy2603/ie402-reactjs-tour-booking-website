@@ -16,6 +16,18 @@ export const publicRoutes = [
     component: LoginPage,
   },
   {
+    path: "/register",
+    component: RegisterPage,
+  },
+  {
+    path: "tour/detail/:id",
+    component: TourDetailPage,
+  },
+  {
+    path: "/search",
+    component: SearchPage,
+  },
+  {
     path: "/about",
     component: AboutPage,
   }
