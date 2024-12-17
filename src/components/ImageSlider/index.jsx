@@ -5,7 +5,10 @@ import styles from "./ImageSlider.module.scss";
 function ImageSlider({ images }) {
   return (
     <>
-      <Slide className={styles.slider}>
+      <Slide className={styles.slider}
+        autoplay={true}
+        duration={3000}
+      >
         {images.map((image, index) => (
           <div
             key={image?.id ?? index}

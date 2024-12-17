@@ -16,16 +16,23 @@ const MapComponent = ({ locations, roads, centerPoint, zoomVal }) => {
     content: "{description}",
   };
 
+  const colors = [
+    [29, 93, 222],
+    [235, 21, 57],
+    [34, 139, 34],
+    [255, 165, 0]
+  ]
+
   const places = locations.map((place) => {
     return {
       type: "point",
-      longitude: place?.longitude,
-      latitude: place?.latitude,
+      longitude: place?.point.longitude,
+      latitude: place?.point.latitude,
       Name: place?.Name,
-      Content: place?.Content,
+      Content: place?.description,
       symbol: {
         type: "picture-marker",
-        url: place.symbolURL,
+        url: place?.icon,
         width: "40px",
         height: "40px",
       },
@@ -33,21 +40,20 @@ const MapComponent = ({ locations, roads, centerPoint, zoomVal }) => {
     };
   });
 
-  const routes = roads.map((route) => {
+  const routes = roads.map((route, index) => {
     return {
       type: "polyline",
-      paths: route.paths,
-      Name: route.Name,
+      paths: route.points.map((point) => [point.longitude, point.latitude]),
+      Name: route.name,
       description: route.description,
       symbol: {
         type: "simple-line",
-        color: route.symbol.color,
+        color: colors[index % colors.length],
         width: 4,
       },
       popupTemplate: template_route,
     };
   });
-
   const mapDiv = useRef(null);
 
   useEffect(() => {

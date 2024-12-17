@@ -6,6 +6,7 @@ import { faRoad } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Button from "~/components/Button";
 import { useNavigate } from "react-router-dom";
+import { convertPrice } from "~/utils";
 
 const TourCard = ({ tour }) => {
   const navigate = useNavigate();
@@ -17,26 +18,26 @@ const TourCard = ({ tour }) => {
       className="border block rounded-lg shadow hover:shadow-xl transition duration-300 overflow-hidden transform hover:scale-100 hover:-translate-y-2 cursor-pointer"
     >
       <img
-        src={tour?.image}
-        alt={tour?.title}
+        src={tour?.thumbnailImg}
+        alt={tour?.name}
         className="w-full h-80 object-cover"
       />
       <div className="p-4 flex flex-col gap-3">
         <h3 className="text-2xl font-semibold mb-2 line-clamp-2 overflow-hidden min-h-[3rem]">
-          {tour?.title}
+          {tour?.name}
         </h3>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <FontAwesomeIcon icon={faCar} />
           </div>
           <span className="line-through text-gray-400 text-2xl">
-            {tour?.priceOriginal}
+            {convertPrice(tour?.price + 900000)}
           </span>
         </div>
         <div className="flex items-center text-gray-600 text-2xl">
           <FontAwesomeIcon icon={faRoad} className="mr-2 text-gray-500" />
           <span>Quãng đường: </span>
-          <span className="text-red-500">&nbsp;{tour.distance}km</span>
+          <span className="text-red-500">&nbsp;5 km</span>
         </div>
         <div className="flex items-center text-gray-600 text-base">
           {[...Array(5)].map((_, index) => (
@@ -44,7 +45,7 @@ const TourCard = ({ tour }) => {
               icon={faStar}
               key={index}
               className={`text-lg ${
-                index < tour.rating ? "text-yellow-500" : "text-gray-300"
+                index < 3 ? "text-yellow-500" : "text-gray-300"
               } mr-1`}
             />
           ))}
@@ -52,7 +53,7 @@ const TourCard = ({ tour }) => {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-red-600 font-semibold text-3xl ml-2">
-              {tour?.priceDiscounted}
+              {convertPrice(tour?.price)}
             </span>
           </div>
           <Button
