@@ -4,6 +4,7 @@ import PaymentPage from "../pages/Payment";
 import RegisterPage from "../pages/Register";
 import TourDetailPage from "../pages/TourDetail";
 import SearchPage from "../pages/Search";
+import AboutPage from "../pages/About";
 
 export const publicRoutes = [
   {
@@ -26,6 +27,10 @@ export const publicRoutes = [
     path: "/search",
     component: SearchPage,
   },
+  {
+    path: "/about",
+    component: AboutPage,
+  }
 ];
 
 export const privateRoutes = [
