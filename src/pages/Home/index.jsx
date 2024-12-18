@@ -295,7 +295,7 @@ function HomePage() {
                         className={styles.image}
                       />
                       <center className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full">
-                        cong vien landmark
+                        Công Viên landmark
                       </center>
                       <div
                         className="absolute bottom-2
@@ -406,7 +406,7 @@ function HomePage() {
                         className={styles.image}
                       />
                       <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
-                        cong vien hoa huong duong
+                        Công Viên Hoa Hướng Dương
                       </span>
                       <div
                         className="absolute bottom-2

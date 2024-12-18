@@ -11,6 +11,9 @@ import { convertPrice } from "~/utils";
 const TourCard = ({ tour }) => {
   const navigate = useNavigate();
 
+  // random value of tour's distance in [10 - 30]
+  const handleRandomTourDistance = () => Math.floor(Math.random() * 21 + 10);
+
   return (
     <Link
       to={`/tour/detail/${tour?.id}`}
@@ -37,7 +40,9 @@ const TourCard = ({ tour }) => {
         <div className="flex items-center text-gray-600 text-2xl">
           <FontAwesomeIcon icon={faRoad} className="mr-2 text-gray-500" />
           <span>Quãng đường: </span>
-          <span className="text-red-500">&nbsp;5 km</span>
+          <span className="text-red-500">
+            &nbsp;{handleRandomTourDistance()} km
+          </span>
         </div>
         <div className="flex items-center text-gray-600 text-base">
           {[...Array(5)].map((_, index) => (
@@ -61,7 +66,7 @@ const TourCard = ({ tour }) => {
             variant="primary"
             onClick={(e) => {
               e.preventDefault();
-              navigate(`/payment/${tour.id}`); // Điều hướng đến trang thanh toán
+              navigate(`/payment/${tour?.id}`); // Điều hướng đến trang thanh toán
             }}
           />
         </div>

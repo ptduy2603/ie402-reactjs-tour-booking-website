@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
 import ImageSlider from "~/components/ImageSlider";
-import { mockTour } from "~/data";
+// import { mockTour } from "~/data";
 import styles from "./TourDetail.module.scss";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "~/constants";
@@ -18,7 +18,6 @@ const TourDetailPage = () => {
   const [tourDetail, setTourDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [tourList, setTourList] = useState([]);
-  const { images } = mockTour; // fetch from API
 
   useEffect(() => {
     const fetchTourList = async () => {
@@ -30,10 +29,11 @@ const TourDetailPage = () => {
         console.log(error);
       }
     };
+
     const fetchTour = async () => {
       try {
         setIsLoading(true);
-        // fetch data from API
+        // fetch tour's detail from API
         const response = await fetch(`${SERVER_URL}/tours/tour/${id}`);
         const data = await response.json();
         setTourDetail(data.data.tourDetail);
@@ -43,6 +43,7 @@ const TourDetailPage = () => {
         setIsLoading(false);
       }
     };
+
     fetchTour();
     fetchTourList();
   }, []);
@@ -83,10 +84,10 @@ const TourDetailPage = () => {
                     <h2 className={styles.title}>Bản đồ tour</h2>
                     <div className={styles["map-wrapper"]}>
                       <MapComponent
-                        roads={tourDetail.routes}
-                        locations={tourDetail.locations}
-                        centerPoint={tourDetail.centerPoint}
-                        zoomVal={tourDetail.zoomVal}
+                        roads={tourDetail?.routes}
+                        locations={tourDetail?.locations}
+                        centerPoint={tourDetail?.centerPoint}
+                        zoomVal={tourDetail?.zoomVal ?? 16}
                       />
                     </div>
                   </div>
