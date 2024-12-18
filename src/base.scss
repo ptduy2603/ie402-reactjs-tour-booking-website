@@ -77,6 +77,11 @@ body {
   max-width: 25%;
 }
 
+.col-lg-2 {
+  flex: 0 16.6667%;
+  max-width: 16.6667%;
+}
+
 .col-lg-0 {
   display: none;
 }
@@ -120,6 +125,11 @@ body {
   .col-md-8 {
     flex: 0 66.6667%;
     max-width: 66.6667%;
+  }
+
+  .col-md-2 {
+    flex: 0 16.6667%;
+    max-width: 16.6667%;
   }
 
   .col-md-order-1 {
