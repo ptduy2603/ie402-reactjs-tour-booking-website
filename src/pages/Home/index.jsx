@@ -141,7 +141,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className={classNames('pb-20', styles.listTour)}>
+        <div className={classNames("pb-20", styles.listTour)}>
           <div className="inner pt-10">
             <div className="flex flex-col gap-11">
               <div className="dealTour">
@@ -216,8 +216,226 @@ function HomePage() {
                   </p>
                 </center>
 
-                <div>
-                  <img src="/images/favorite-1.png" alt="" />
+                <div className="row">
+                  <div className="col col-lg-3 col-md-6 col-sm-12 ">
+                    <div className={styles.imageContainer}>
+                      <img
+                        src="/images/dinh-doc-lap.jpg"
+                        alt="dinh doc lap"
+                        className={styles.image}
+                      />
+                      <center className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full">
+                        Dinh Độc Lập
+                      </center>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-white w-full text-center"
+                      >
+                        Đã có{" "}
+                        <span className="text-[#ff5722] font-semibold">
+                          1600+
+                        </span>{" "}
+                        lượt khách
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-3 col-md-6 col-sm-12 ">
+                    <div className={styles.imageContainer}>
+                      <img
+                        src="/images/bao-tang-lich-su.jpeg"
+                        alt="bao-tang-lich-su"
+                        className={styles.image}
+                      />
+                      <center className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full">
+                        bảo tàng lịch sử
+                      </center>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-white w-full text-center"
+                      >
+                        Đã có{" "}
+                        <span className="text-[#ff5722] font-semibold">
+                          1000+
+                        </span>{" "}
+                        lượt khách
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-3 col-md-6 col-sm-12 ">
+                    <div className={styles.imageContainer}>
+                      <img
+                        src="/images/bui-vien.jpg"
+                        alt="pho-tay-bui-vien"
+                        className={styles.image}
+                      />
+                      <center className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full">
+                        phố tây bùi viện
+                      </center>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-white w-full text-center"
+                      >
+                        Đã có{" "}
+                        <span className="text-[#ff5722] font-semibold">
+                          2000+
+                        </span>{" "}
+                        lượt khách
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-3 col-md-6 col-sm-12 ">
+                    <div className={styles.imageContainer}>
+                      <img
+                        src="/images/cong-vien-landmark.jpg"
+                        alt="cong vien landmark"
+                        className={styles.image}
+                      />
+                      <center className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full">
+                        cong vien landmark
+                      </center>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-white w-full text-center"
+                      >
+                        Đã có{" "}
+                        <span className="text-[#ff5722] font-semibold">
+                          890+
+                        </span>{" "}
+                        lượt khách
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row mt-4">
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/bao-tang-my-thuat.jpg"
+                        alt="bao tang my thuat"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        bảo tàng mỹ thuật
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/thao-cam-vien.jpg"
+                        alt="dinh doc lap"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        Thảo cầm viên
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/ben-nha-rong.png"
+                        alt="ben nha rong"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        bến nhà rồng
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/cau-anh-sao.jpg"
+                        alt="cau anh sao"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        cầu ánh sao
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/cong-vien-hoa-huong-duong.jpg"
+                        alt="cong vien hoa huong duong"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        cong vien hoa huong duong
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col col-lg-2 col-md-2 col-sm-12">
+                    <div
+                      className={classNames(styles.imageContainer, "h-[160px]")}
+                    >
+                      <img
+                        src="/images/duong-sach.jpg"
+                        alt="duong sach"
+                        className={styles.image}
+                      />
+                      <span className="uppercase absolute bottom-8 text-[15px] z-10 text-white font-semibold w-full text-left pl-5">
+                        đường sách
+                      </span>
+                      <div
+                        className="absolute bottom-2
+                       text-[12px] z-10 text-[#ff5722] w-full text-left pl-5 font-semibold"
+                      >
+                        Khám phá ngay
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
