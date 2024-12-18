@@ -1,19 +1,14 @@
-// import { styled } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-// import FormLabel from "@mui/material/FormLabel";
-import { useEffect, useState } from "react";
-// import { PaymentTourCard } from "~/components/PaymentTourCard";
-// import { FaAudioDescription } from "react-icons/fa";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import { Link } from "react-router-dom";
-// import AccordionDetails from "@mui/material/AccordionDetails";
 
 const cart = [
   {
@@ -27,31 +22,35 @@ const cart = [
 ];
 
 function PaymentPage() {
-  // const [cartItems, setcartItems] = useState();
   const [totalItem, settotalItem] = useState(0);
   const [selectedValue, setSelectedValue] = useState("");
   const [totalPrice, settotalPrice] = useState(0);
   const [couponValue, setcouponValue] = useState(0);
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     console.log(selectedValue);
   };
 
   useEffect(() => {
-    // setcartItems(cart);
     settotalItem(cart.length);
   }, []);
+
   return (
-    <div className="w-screen h-screen flex flex-row px-20">
+    <div className="w-full h-full flex flex-col md:flex-row px-4 md:px-20 gap-10">
       {/* Main Section */}
-      <div className="w-2/3 h-full flex flex-col items-center shadow-xl">
+      <div className="w-full md:w-2/3 h-full flex flex-col items-center shadow-xl p-5">
         {/* Main Left Section */}
         <div className="pt-4 pb-10">
-          <h1 className="font-bold text-6xl text-blue-400">SG Tour</h1>
+          <h1 className="font-bold text-4xl md:text-6xl text-blue-400">
+            SG Tour
+          </h1>
         </div>
-        <div className="w-full h-full flex flex-row justify-around">
+        <div className="w-full h-full flex flex-col md:flex-row justify-around">
           <div className="w-full h-full flex flex-col p-5">
-            <h2 className="font-bold text-4xl">Thông tin đặt tour</h2>
+            <h2 className="font-bold text-2xl md:text-4xl">
+              Thông tin đặt tour
+            </h2>
             <div className="mt-10">
               <Box
                 component="form"
@@ -94,7 +93,7 @@ function PaymentPage() {
           {/* Main Right Section */}
           <div className="w-full h-full flex flex-col p-5">
             <div className="pb-5">
-              <h2 className="font-bold text-4xl">Thanh toán</h2>
+              <h2 className="font-bold text-2xl md:text-4xl">Thanh toán</h2>
             </div>
             <div>
               <FormControl>
@@ -164,27 +163,19 @@ function PaymentPage() {
         </div>
       </div>
       {/* Side Section */}
-      <div className="w-1/3 h-full flex flex-col shadow-xl px-5">
+      <div className="w-full md:w-1/3 h-full flex flex-col shadow-xl px-5">
         {/* Cart Section */}
-        <div className="w-full pt-5">
-          <div>
-            <h2 className="font-bold text-4xl ">
-              Đơn hàng ({totalItem} sản phẩm)
-            </h2>
-          </div>
-          <div className="py-5">
-            Sản phẩm trong giỏ hàng hiển thị ở đây
-            {/* {cartItems.map((item) => (
-            <PaymentTourCard key={item.index} item={item} />
-            ))} */}
-          </div>
+        <div className="w-full pt-10">
+          <h2 className="font-bold text-2xl md:text-4xl">
+            Đơn hàng ({totalItem} sản phẩm)
+          </h2>
+          <div className="py-5">Sản phẩm trong giỏ hàng hiển thị ở đây</div>
         </div>
         {/* Pay Section */}
         <div className="w-full h-full flex flex-col gap-10">
           <div className="w-full flex flex-row justify-between pt-5">
             <TextField
               id="standard-basic"
-              // label="Coupon"
               variant="standard"
               placeholder="Nhập mã giảm giá"
             />
@@ -204,7 +195,7 @@ function PaymentPage() {
             <p className="font-bold">Tổng thanh toán</p>
             <p>{totalPrice - couponValue} VNĐ</p>
           </div>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between pb-10">
             <Link
               to={"/cart"}
               className="font-bold text-blue-400 hover:opacity-70"
