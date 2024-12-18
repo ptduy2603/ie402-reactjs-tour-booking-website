@@ -1,7 +1,7 @@
 import styles from "./SearchBox.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 import { tourList } from "~/data";
@@ -13,27 +13,12 @@ function SearchBox() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef();
-
-  useEffect(() => {
-    // khi ma chua nhan enter ma thoat thi no se mat di du lieu dang nhap
-    const handleClickOutside = (event) => {
-      if (
-        dropdownRef?.current &&
-        !dropdownRef?.current?.contains(event?.target)
-      ) {
-        setIsVisible(false);
-        setInputValue("");
-      }
-    };
-    document?.addEventListener("mousedown", handleClickOutside);
-    return () => document?.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const buttonRef = useRef();
 
   const handleOnChange = (e) => {
     setInputValue(e.target.value);
 
     if (e.target.value.trim() === "") {
-      setIsInputActive(false);
       setIsVisible(e.target.value && suggestions?.length > 0);
     } else {
       const n = tourList.filter((tour) =>
@@ -64,13 +49,28 @@ function SearchBox() {
 
   const handleSearchSelect = (suggestion) => {
     setSuggestions([]);
-    //khi click vao day la den trang detail cua san pham
     navigate(`/tour/detail/${suggestion?.id}`);
   };
 
   const handleFocus = () => {
     if (inputValue && suggestions?.length > 0) {
       setIsVisible(true);
+    }
+  };
+
+  const handleBlur = (e) => {
+    // Kiểm tra xem click có phải là vào nút search không
+    if (e.relatedTarget !== buttonRef.current) {
+      setIsVisible(false);
+      if (inputValue.trim() === "") {
+        setIsInputActive(false);
+      }
+    }
+  };
+
+  const handleSearch = () => {
+    if (inputValue.trim() !== "") {
+      navigate(`/search?q=${inputValue}`);
     }
   };
 
@@ -92,6 +92,7 @@ function SearchBox() {
                       onChange={handleOnChange}
                       onKeyDown={handleKeyDown}
                       onFocus={handleFocus}
+                      onBlur={handleBlur}
                     />
                     {isVisible && (
                       <ul className="absolute z-50 bg-white rounded-md shadow-md">
@@ -139,8 +140,9 @@ function SearchBox() {
         </div>
 
         <button
+          ref={buttonRef}
           className={styles["search_btn"]}
-          onClick={() => navigate(`/search?q=${inputValue}`)}
+          onClick={handleSearch}
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
