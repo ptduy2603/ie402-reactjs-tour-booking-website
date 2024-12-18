@@ -30,7 +30,11 @@ export const publicRoutes = [
   {
     path: "/about",
     component: AboutPage,
-  }
+  },
+  {
+    path: "/payment",
+    component: PaymentPage,
+  },
 ];
 
 export const privateRoutes = [
