@@ -188,7 +188,7 @@ function PaymentPage() {
               variant="standard"
               placeholder="Nhập mã giảm giá"
             />
-            <Button variant="contained">Áp dụng</Button>
+            <Button variant="outlined">Áp dụng</Button>
           </div>
           <div className="flex flex-col gap-3">
             <div className="flex flex-row justify-between">
