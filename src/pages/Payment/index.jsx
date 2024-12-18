@@ -42,8 +42,10 @@ function PaymentPage() {
     settotalItem(cart.length);
   }, []);
   return (
-    <div className="w-screen h-screen flex flex-row">
-      <div className="w-2/3 h-full flex flex-col items-center m-10 shadow-xl">
+    <div className="w-screen h-screen flex flex-row px-20">
+      {/* Main Section */}
+      <div className="w-2/3 h-full flex flex-col items-center shadow-xl">
+        {/* Main Left Section */}
         <div className="pt-4 pb-10">
           <h1 className="font-bold text-6xl text-blue-400">SG Tour</h1>
         </div>
@@ -89,8 +91,11 @@ function PaymentPage() {
               </Box>
             </div>
           </div>
+          {/* Main Right Section */}
           <div className="w-full h-full flex flex-col p-5">
-            <h2 className="font-bold text-4xl">Thanh toán</h2>
+            <div className="pb-5">
+              <h2 className="font-bold text-4xl">Thanh toán</h2>
+            </div>
             <div>
               <FormControl>
                 <RadioGroup
@@ -158,22 +163,28 @@ function PaymentPage() {
           </div>
         </div>
       </div>
-      <div className="w-1/3 h-full flex flex-col shadow-xl">
+      {/* Side Section */}
+      <div className="w-1/3 h-full flex flex-col shadow-xl px-5">
+        {/* Cart Section */}
         <div className="w-full pt-5">
-          <h2 className="font-bold text-4xl ">
-            Đơn hàng ({totalItem} sản phẩm)
-          </h2>
-        </div>
-        <div>
-          {/* {cartItems.map((item) => (
+          <div>
+            <h2 className="font-bold text-4xl ">
+              Đơn hàng ({totalItem} sản phẩm)
+            </h2>
+          </div>
+          <div className="py-5">
+            Sản phẩm trong giỏ hàng hiển thị ở đây
+            {/* {cartItems.map((item) => (
             <PaymentTourCard key={item.index} item={item} />
-          ))} */}
+            ))} */}
+          </div>
         </div>
+        {/* Pay Section */}
         <div className="w-full h-full flex flex-col gap-10">
-          <div className="flex flex-row justify-between">
+          <div className="w-full flex flex-row justify-between pt-5">
             <TextField
               id="standard-basic"
-              label="Coupon"
+              // label="Coupon"
               variant="standard"
               placeholder="Nhập mã giảm giá"
             />
@@ -200,7 +211,9 @@ function PaymentPage() {
             >
               Quay về giỏ hàng
             </Link>
-            <Button variant="contained">Đặt tour</Button>
+            <Button variant="contained" size="large">
+              Đặt tour
+            </Button>
           </div>
         </div>
       </div>
