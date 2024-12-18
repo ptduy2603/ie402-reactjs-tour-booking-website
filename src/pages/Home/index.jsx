@@ -10,6 +10,7 @@ import { SERVER_URL } from "~/constants";
 function HomePage() {
   const [startDate, setStartDate] = useState(new Date());
   const [tourList, setTourList] = useState([]);
+
   useEffect(() => {
     const fetchTourList = async () => {
       try {
@@ -141,7 +142,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className={classNames('pb-20', styles.listTour)}>
+        <div className={classNames("pb-20", styles.listTour)}>
           <div className="inner pt-10">
             <div className="flex flex-col gap-11">
               <div className="dealTour">
