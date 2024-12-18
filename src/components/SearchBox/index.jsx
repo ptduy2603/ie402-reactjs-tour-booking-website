@@ -65,7 +65,7 @@ function SearchBox() {
   const handleSearchSelect = (suggestion) => {
     setSuggestions([]);
     //khi click vao day la den trang detail cua san pham
-    navigate(`/tour/detail/${suggestion?._id}`);
+    navigate(`/tour/detail/${suggestion?.id}`);
   };
 
   const handleFocus = () => {
@@ -140,7 +140,7 @@ function SearchBox() {
 
         <button
           className={styles["search_btn"]}
-          onClick={() => navigate("/search")}
+          onClick={() => navigate(`/search?q=${inputValue}`)}
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
