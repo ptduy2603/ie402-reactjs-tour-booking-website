@@ -1,5 +1,211 @@
+// import { styled } from "@mui/material/styles";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+// import FormLabel from "@mui/material/FormLabel";
+import { useEffect, useState } from "react";
+// import { PaymentTourCard } from "~/components/PaymentTourCard";
+// import { FaAudioDescription } from "react-icons/fa";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import { Link } from "react-router-dom";
+// import AccordionDetails from "@mui/material/AccordionDetails";
+
+const cart = [
+  {
+    tourName: "tour2",
+    tourDescription: "[Chợ Bến Thành - Dinh Độc Lập - Bến Nhà Rồng]",
+    tourPrice: 1000000,
+    thumbnailIMG:
+      "https://lh5.googleusercontent.com/proxy/t08n2HuxPfw8OpbutGWjekHAgxfPFv-pZZ5_-uTfhEGK8B5Lp-VN4VjrdxKtr8acgJA93S14m9NdELzjafFfy13b68pQ7zzDiAmn4Xg8LvsTw1jogn_7wStYeOx7ojx5h63Gliw",
+    person: 2,
+  },
+];
+
 function PaymentPage() {
-  return <>This is payment page</>;
+  // const [cartItems, setcartItems] = useState();
+  const [totalItem, settotalItem] = useState(0);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [totalPrice, settotalPrice] = useState(0);
+  const [couponValue, setcouponValue] = useState(0);
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    console.log(selectedValue);
+  };
+
+  useEffect(() => {
+    // setcartItems(cart);
+    settotalItem(cart.length);
+  }, []);
+  return (
+    <div className="w-screen h-screen flex flex-row">
+      <div className="w-2/3 h-full flex flex-col items-center m-10 shadow-xl">
+        <div className="pt-4 pb-10">
+          <h1 className="font-bold text-6xl text-blue-400">SG Tour</h1>
+        </div>
+        <div className="w-full h-full flex flex-row justify-around">
+          <div className="w-full h-full flex flex-col p-5">
+            <h2 className="font-bold text-4xl">Thông tin đặt tour</h2>
+            <div className="mt-10">
+              <Box
+                component="form"
+                sx={{ "& > :not(style)": { m: 1, width: "40ch" } }}
+                noValidate
+                autoComplete="off"
+                className="flex flex-col font-bold gap-5"
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  type="email"
+                  placeholder="abcxyz@gmail.com"
+                />
+                <TextField
+                  id="outlined-basic"
+                  label="Họ và tên"
+                  variant="outlined"
+                  type="text"
+                  placeholder="Tên của bạn là gì ?"
+                />
+                <TextField
+                  id="outlined-basic"
+                  label="Số điện thoại"
+                  variant="outlined"
+                  type="tel"
+                  placeholder="0xxxxxxxxx"
+                />
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Ghi chú"
+                  multiline
+                  rows={4}
+                  placeholder="Ghi chú bạn muốn gửi gắm..."
+                />
+              </Box>
+            </div>
+          </div>
+          <div className="w-full h-full flex flex-col p-5">
+            <h2 className="font-bold text-4xl">Thanh toán</h2>
+            <div>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="cash"
+                    control={
+                      <Radio
+                        checked={selectedValue === "cash"}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="Thanh toán trực tiếp khi bắt đầu tour"
+                  />
+                  <FormControlLabel
+                    value="atm"
+                    control={
+                      <Radio
+                        checked={selectedValue === "atm"}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="Thanh toán bằng thẻ ngân hàng"
+                  />
+                  <FormControlLabel
+                    value="qrCode"
+                    control={
+                      <Radio
+                        checked={selectedValue === "qrCode"}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="Thanh toán bằng mã QR"
+                  />
+                  <FormControlLabel
+                    value="momo"
+                    control={
+                      <Radio
+                        checked={selectedValue === "momo"}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="Thanh toán qua Momo"
+                  >
+                    <Accordion expanded={selectedValue === "momo"}>
+                      <AccordionSummary
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                      >
+                        <div className="w-full h-full">
+                          <img
+                            src="https://homepage.momocdn.net/blogscontents/momo-upload-api-220630163212-637922035327290078.jpg"
+                            alt="MomoPay"
+                          />
+                        </div>
+                      </AccordionSummary>
+                    </Accordion>
+                  </FormControlLabel>
+                </RadioGroup>
+              </FormControl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="w-1/3 h-full flex flex-col shadow-xl">
+        <div className="w-full pt-5">
+          <h2 className="font-bold text-4xl ">
+            Đơn hàng ({totalItem} sản phẩm)
+          </h2>
+        </div>
+        <div>
+          {/* {cartItems.map((item) => (
+            <PaymentTourCard key={item.index} item={item} />
+          ))} */}
+        </div>
+        <div className="w-full h-full flex flex-col gap-10">
+          <div className="flex flex-row justify-between">
+            <TextField
+              id="standard-basic"
+              label="Coupon"
+              variant="standard"
+              placeholder="Nhập mã giảm giá"
+            />
+            <Button variant="contained">Áp dụng</Button>
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-row justify-between">
+              <p>Tổng chi phí</p>
+              <p>{totalPrice} VNĐ</p>
+            </div>
+            <div className="flex flex-row justify-between">
+              <p>Giảm giá</p>
+              <p>{couponValue} VNĐ</p>
+            </div>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p className="font-bold">Tổng thanh toán</p>
+            <p>{totalPrice - couponValue} VNĐ</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <Link
+              to={"/cart"}
+              className="font-bold text-blue-400 hover:opacity-70"
+            >
+              Quay về giỏ hàng
+            </Link>
+            <Button variant="contained">Đặt tour</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default PaymentPage;
