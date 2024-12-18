@@ -149,7 +149,7 @@ export const mockTour = {
 
 export const tourList = [
   {
-    id: 1,
+    id: "tour1",
     image: "https://via.placeholder.com/300x200",
     title: "Dinh độc lập - Miếu Bà - Chợ Bình Tây ",
     priceOriginal: "6.200.000đ",
@@ -158,7 +158,7 @@ export const tourList = [
     rating: 4,
   },
   {
-    id: 2,
+    id: "tour2",
     image: "https://via.placeholder.com/300x200",
     title: "Dinh độc lập - Chợ bến thành - Bảo tàng mỹ thuật",
     priceOriginal: "6.500.000đ",
@@ -167,7 +167,7 @@ export const tourList = [
     rating: 4.5,
   },
   {
-    id: 3,
+    id: "tour3",
     image: "https://via.placeholder.com/300x200",
     title: "Nhà thờ Đức Bà - Nhà hát thành phố HCM - Bảo tàng lịch sử VN",
     priceOriginal: "6.500.000đ",
@@ -176,7 +176,7 @@ export const tourList = [
     rating: 3,
   },
   {
-    id: 4,
+    id: "tour4",
     image: "https://via.placeholder.com/300x200",
     title: "Thảo cầm viên - phố đi bộ - Khu phố Tây bùi viện",
     priceOriginal: "6.500.000đ",
@@ -185,7 +185,7 @@ export const tourList = [
     rating: 5,
   },
   {
-    id: 5,
+    id: "tour5",
     image: "https://via.placeholder.com/300x200",
     title: "Bảo tàng lịch sử - Đường sách nguyễn văn bình - Dinh độc lập",
     priceOriginal: "6.500.000đ",
@@ -194,7 +194,7 @@ export const tourList = [
     rating: 4,
   },
   {
-    id: 6,
+    id: "tour6",
     image: "https://via.placeholder.com/300x200",
     title: "Bến nhà rồng - bến bạch đằng - bảo tàng chiến dịch HCM",
     priceOriginal: "6.500.000đ",
