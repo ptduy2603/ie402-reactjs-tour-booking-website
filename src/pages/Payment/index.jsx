@@ -13,6 +13,7 @@ import { SERVER_URL } from "~/constants";
 import styles from "../TourDetail/TourDetail.module.scss";
 import AppLoading from "~/components/Apploading";
 import { PaymentTourCard } from "~/components/PaymentTourCard";
+import { convertPrice } from "~/utils";
 
 const cart = [
   {
@@ -29,7 +30,7 @@ function PaymentPage() {
   const id = useParams();
   const [totalItem, settotalItem] = useState(0);
   const [selectedValue, setSelectedValue] = useState("");
-  const [totalPrice, settotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [couponValue, setcouponValue] = useState(0);
   const [couponCode, setcouponCode] = useState("");
   const [isAppliedCouppon, setisAppliedCouppon] = useState(false);
@@ -67,7 +68,6 @@ function PaymentPage() {
 
     fetchTour();
     settotalItem(cart.length);
-    console.log(tourDetail);
   }, []);
 
   return (
@@ -213,7 +213,7 @@ function PaymentPage() {
                   Đơn hàng ({totalItem} sản phẩm)
                 </h2>
                 <div className="py-5">
-                  <PaymentTourCard item={tourDetail} />
+                  <PaymentTourCard item={tourDetail} setTotalPrice={setTotalPrice} />
                 </div>
               </div>
               {/* Pay Section */}
@@ -238,16 +238,16 @@ function PaymentPage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row justify-between">
                     <p>Tổng chi phí</p>
-                    <p>{totalPrice} VNĐ</p>
+                    <p>{convertPrice(totalPrice)} VNĐ</p>
                   </div>
                   <div className="flex flex-row justify-between">
                     <p>Giảm giá</p>
-                    <p>{couponValue} VNĐ</p>
+                    <p>{convertPrice(couponValue)} VNĐ</p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
                   <p className="font-bold">Tổng thanh toán</p>
-                  <p>{totalPrice - couponValue} VNĐ</p>
+                  <p>{convertPrice(totalPrice - couponValue)} VNĐ</p>
                 </div>
                 <div className="flex flex-row justify-between pb-10">
                   <Link
