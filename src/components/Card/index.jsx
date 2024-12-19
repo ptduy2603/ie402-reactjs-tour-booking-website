@@ -11,8 +11,11 @@ import { convertPrice } from "~/utils";
 const TourCard = ({ tour }) => {
   const navigate = useNavigate();
 
-  // random value of tour's distance in [10 - 30]
-  const handleRandomTourDistance = () => Math.floor(Math.random() * 21 + 10);
+  // random value of tour's distance in [10 ;30]
+  const tourDistance = Math.floor(Math.random() * 21 + 10);
+
+  // random tour's star in [3 ; 5]
+  const tourStars = Math.floor(Math.random() * 3 + 3);
 
   return (
     <Link
@@ -40,9 +43,7 @@ const TourCard = ({ tour }) => {
         <div className="flex items-center text-gray-600 text-2xl">
           <FontAwesomeIcon icon={faRoad} className="mr-2 text-gray-500" />
           <span>Quãng đường: </span>
-          <span className="text-red-500">
-            &nbsp;{handleRandomTourDistance()} km
-          </span>
+          <span className="text-red-500">&nbsp;{tourDistance} km</span>
         </div>
         <div className="flex items-center text-gray-600 text-base">
           {[...Array(5)].map((_, index) => (
@@ -50,7 +51,7 @@ const TourCard = ({ tour }) => {
               icon={faStar}
               key={index}
               className={`text-lg ${
-                index < 3 ? "text-yellow-500" : "text-gray-300"
+                index < tourStars ? "text-yellow-500" : "text-gray-300"
               } mr-1`}
             />
           ))}

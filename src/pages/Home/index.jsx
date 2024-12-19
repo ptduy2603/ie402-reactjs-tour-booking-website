@@ -6,6 +6,7 @@ import styles from "./Home.module.scss";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { SERVER_URL } from "~/constants";
+import GoToTopButton from "~/components/GoToTopButton";
 
 function HomePage() {
   const [startDate, setStartDate] = useState(new Date());
@@ -443,6 +444,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <GoToTopButton />
     </>
   );
 }
