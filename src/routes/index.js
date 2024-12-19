@@ -32,14 +32,14 @@ export const publicRoutes = [
     component: AboutPage,
   },
   {
-    path: "/payment",
+    path: "/payment/:id",
     component: PaymentPage,
   },
 ];
 
 export const privateRoutes = [
   {
-    path: "/payment",
+    path: "/payment/:id",
     component: PaymentPage,
   },
 ];

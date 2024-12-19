@@ -201,16 +201,20 @@ const TourDetailPage = () => {
                 </div>
 
                 <div className="mt-8 flex gap-4 justify-between">
-                  <Button
-                    content="Đặt Tour"
-                    extraStyles={{ flex: 1, minWidth: "unset" }}
-                    variant="primary"
-                  />
-                  <Button
-                    content="Yêu cầu đặt"
-                    extraStyles={{ flex: 1, minWidth: "unset" }}
-                    variant="outline"
-                  />
+                  <Link to={`/payment/${id}`}>
+                    <Button
+                      content="Đặt Tour"
+                      extraStyles={{ flex: 1, minWidth: "unset" }}
+                      variant="primary"
+                    />
+                  </Link>
+                  <Link to={`/payment/${id}`}>
+                    <Button
+                      content="Yêu cầu đặt"
+                      extraStyles={{ flex: 1, minWidth: "unset" }}
+                      variant="outline"
+                    />
+                  </Link>
                 </div>
               </aside>
             </div>

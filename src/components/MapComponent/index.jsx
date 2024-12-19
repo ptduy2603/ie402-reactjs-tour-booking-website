@@ -20,8 +20,8 @@ const MapComponent = ({ locations, roads, centerPoint, zoomVal }) => {
     [29, 93, 222],
     [235, 21, 57],
     [34, 139, 34],
-    [255, 165, 0]
-  ]
+    [255, 165, 0],
+  ];
 
   const places = locations.map((place) => {
     return {
