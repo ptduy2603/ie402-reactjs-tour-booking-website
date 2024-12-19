@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useEffect, useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -8,12 +9,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { SERVER_URL } from "~/constants";
 import styles from "../TourDetail/TourDetail.module.scss";
 import AppLoading from "~/components/Apploading";
 import { PaymentTourCard } from "~/components/PaymentTourCard";
 import { convertPrice } from "~/utils";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const cart = [
   {
@@ -28,6 +31,7 @@ const cart = [
 
 function PaymentPage() {
   const id = useParams();
+  const navigate = useNavigate();
   const [totalItem, settotalItem] = useState(0);
   const [selectedValue, setSelectedValue] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -36,6 +40,12 @@ function PaymentPage() {
   const [isAppliedCouppon, setisAppliedCouppon] = useState(false);
   const [tourDetail, setTourDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    navigate("/");
+  };
 
   const handleApply = () => {
     setisAppliedCouppon(true);
@@ -213,7 +223,10 @@ function PaymentPage() {
                   Đơn hàng ({totalItem} sản phẩm)
                 </h2>
                 <div className="py-5">
-                  <PaymentTourCard item={tourDetail} setTotalPrice={setTotalPrice} />
+                  <PaymentTourCard
+                    item={tourDetail}
+                    setTotalPrice={setTotalPrice}
+                  />
                 </div>
               </div>
               {/* Pay Section */}
@@ -256,9 +269,35 @@ function PaymentPage() {
                   >
                     Quay về giỏ hàng
                   </Link>
-                  <Button variant="contained" size="large">
+                  <Button
+                    variant="contained"
+                    size="large "
+                    onClick={handleOpen}
+                  >
                     Đặt tour
                   </Button>
+                  <Modal open={open} onClose={handleClose}>
+                    <Box className="w-1/3 shadow-lg rounded-md p-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white">
+                      <div className="w-full flex flex-col gap-10">
+                        <p className="font-bold text-4xl text-blue-400">
+                          Đặt tour thành công !!!
+                        </p>
+                        <p>
+                          Nhấn nút "Đồng ý" hoặc click ra ngoài để về trang
+                          chủ...
+                        </p>
+                        <div className="w-full flex flex-row justify-end">
+                          <Button
+                            variant="contained"
+                            size="large"
+                            onClick={handleClose}
+                          >
+                            Đồng ý
+                          </Button>
+                        </div>
+                      </div>
+                    </Box>
+                  </Modal>
                 </div>
               </div>
             </div>
