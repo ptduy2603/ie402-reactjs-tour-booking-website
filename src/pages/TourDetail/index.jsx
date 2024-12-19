@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
 import ImageSlider from "~/components/ImageSlider";
-// import { mockTour } from "~/data";
 import styles from "./TourDetail.module.scss";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "~/constants";
 import { useParams } from "react-router-dom";
 import { convertPrice } from "~/utils";
+import AppLoading from "~/components/Apploading";
 
 const TourDetailPage = () => {
   const { id } = useParams();
@@ -51,8 +51,8 @@ const TourDetailPage = () => {
   return (
     <div className={styles.wrapper}>
       {isLoading ? (
-        <div className="flex justify-center items-center h-96">
-          <p>Loading...</p>
+        <div className="flex justify-center items-center h-96 bg-white">
+          <AppLoading />
         </div>
       ) : (
         <div className="inner py-6">

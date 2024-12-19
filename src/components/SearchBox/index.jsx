@@ -61,7 +61,6 @@ function SearchBox() {
   const handleBlur = (e) => {
     // Kiểm tra xem click có phải là vào nút search không
     if (e.relatedTarget !== buttonRef.current) {
-      setIsVisible(false);
       if (inputValue.trim() === "") {
         setIsInputActive(false);
       }
