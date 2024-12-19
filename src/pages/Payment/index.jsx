@@ -277,7 +277,7 @@ function PaymentPage() {
                     Đặt tour
                   </Button>
                   <Modal open={open} onClose={handleClose}>
-                    <Box className="w-1/3 shadow-lg rounded-md p-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white">
+                    <Box className="w-1/3 shadow-lg rounded-md p-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white">
                       <div className="w-full flex flex-col gap-10">
                         <p className="font-bold text-4xl text-blue-400">
                           Đặt tour thành công !!!
