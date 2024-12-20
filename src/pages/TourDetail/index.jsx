@@ -12,6 +12,7 @@ import { SERVER_URL } from "~/constants";
 import { useParams } from "react-router-dom";
 import { convertPrice } from "~/utils";
 import AppLoading from "~/components/Apploading";
+import GoToTopButton from "~/components/GoToTopButton";
 
 const TourDetailPage = () => {
   const { id } = useParams();
@@ -230,6 +231,7 @@ const TourDetailPage = () => {
           </section>
         </div>
       )}
+      <GoToTopButton />
     </div>
   );
 };

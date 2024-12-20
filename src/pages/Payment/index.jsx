@@ -79,7 +79,7 @@ function PaymentPage() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <>
       {isLoading ? (
         <div className="flex justify-center items-center h-96 bg-white">
           <AppLoading />
@@ -147,7 +147,7 @@ function PaymentPage() {
                     </h2>
                   </div>
                   <div>
-                    <FormControl>
+                    <FormControl className="text-4xl">
                       <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue="female"
@@ -161,7 +161,11 @@ function PaymentPage() {
                               onChange={handleChange}
                             />
                           }
-                          label="Thanh toán trực tiếp khi bắt đầu tour"
+                          label={
+                            <span className="text-2xl">
+                              Thanh toán trực tiếp khi bắt đầu tour
+                            </span>
+                          }
                         />
                         <FormControlLabel
                           value="atm"
@@ -171,7 +175,8 @@ function PaymentPage() {
                               onChange={handleChange}
                             />
                           }
-                          label="Thanh toán bằng thẻ ngân hàng"
+                          label={
+                            <span className="text-2xl"> Thanh toán bằng thẻ ngân hàng</span>}
                         />
                         <FormControlLabel
                           value="qrCode"
@@ -181,7 +186,8 @@ function PaymentPage() {
                               onChange={handleChange}
                             />
                           }
-                          label="Thanh toán bằng mã QR"
+                          label={
+                            <span className="text-2xl"> Thanh toán bằng mã QR</span>}
                         />
                         <FormControlLabel
                           value="momo"
@@ -191,7 +197,8 @@ function PaymentPage() {
                               onChange={handleChange}
                             />
                           }
-                          label="Thanh toán qua Momo"
+                          label={
+                            <span className="text-2xl"> Thanh toán qua Momo</span>}
                         >
                           <Accordion expanded={selectedValue === "momo"}>
                             <AccordionSummary
@@ -272,7 +279,7 @@ function PaymentPage() {
                     size="large "
                     onClick={handleOpen}
                   >
-                    Đặt tour
+                    <span className="text-2xl">Đặt tour</span>
                   </Button>
                   <Modal open={open} onClose={handleClose}>
                     <Box className="w-1/3 shadow-lg rounded-md p-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white">
@@ -302,7 +309,7 @@ function PaymentPage() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
