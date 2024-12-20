@@ -15,7 +15,6 @@ import styles from "../TourDetail/TourDetail.module.scss";
 import AppLoading from "~/components/Apploading";
 import { PaymentTourCard } from "~/components/PaymentTourCard";
 import { convertPrice } from "~/utils";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const cart = [
@@ -58,7 +57,6 @@ function PaymentPage() {
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    console.log(selectedValue);
   };
 
   useEffect(() => {
